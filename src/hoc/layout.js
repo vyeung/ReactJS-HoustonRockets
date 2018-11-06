@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from "../components/header/Header";
+import Footer from "../components/footer/footer";
 
 const layout = (props) => {
   return (
@@ -7,6 +8,7 @@ const layout = (props) => {
     <div>
       <Header />
       {props.children}
+      <Footer />
     </div>
   );
 };

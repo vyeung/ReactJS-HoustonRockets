@@ -1,0 +1,18 @@
+footer {
+  text-align: center;
+  font-size: 16px;
+  color: #ffffff;
+  padding: 30px 0px;
+}
+
+.footer_wrapper {
+  background: black;
+}
+
+.footer_wrapper .img_wrapper {
+  margin: 0 auto;  /*center it*/
+}
+
+.footer_description {
+  margin: 20px 0px 10px 0px;
+}
