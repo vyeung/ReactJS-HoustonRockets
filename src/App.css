@@ -1,5 +1,7 @@
 /* only put truly global css here */
 
+@import url('https://fonts.googleapis.com/css?family=Righteous|Roboto:300,400,500');
+
 body {
   margin: 0;
   padding: 0;
