@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import RocketsLogo from "../ui/logo";
+import RocketsLogo from "../utils/logo";
 import { Link } from "react-router-dom";
 
 class Header extends Component {

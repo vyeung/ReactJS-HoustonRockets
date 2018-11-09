@@ -1,6 +1,6 @@
 import React from 'react';
 import "./footer.css";
-import RocketsLogo from "../ui/logo";
+import RocketsLogo from "../utils/logo";
 
 const footer = () => {
   return (
