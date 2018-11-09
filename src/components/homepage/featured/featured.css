@@ -1,0 +1,51 @@
+.featured_wrapper {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 80px;  /*aligns the div just below header*/
+  height: 89vh;
+  overflow: hidden;
+}
+
+.featured_stripes {
+  position: relative;
+}
+.stripe {
+  position: absolute;
+  width: 16%;     /*230px*/
+  height: 1200px; /*1200px*/
+}
+
+.featured_text {
+  position: relative;
+  font-family: 'Righteous', cursive;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.featured_hr_wrapper {
+  width: 100%;
+  padding-top: 70px;
+}
+.featured_hr {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 5vw;
+  color: white;
+  background: black;
+}
+
+/* put this div at bottom of featured_text */
+.featured_players {
+  width: 100%;
+  height: 60vh;
+  text-align: center;
+  bottom: 0;
+  position: absolute;
+}
+.featured_players img {
+  height: 100%;
+}
+.harden {
+  padding-right: 8%;
+}
