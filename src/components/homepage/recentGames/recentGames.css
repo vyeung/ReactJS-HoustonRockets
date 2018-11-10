@@ -1,0 +1,42 @@
+.recentG_main {
+  border-top: 1px solid black;
+  padding: 50px 0px;
+}
+
+.recentG_center {
+  width: 85%;
+  margin: 0 auto;
+}
+.recentG_center h2 {
+  margin: 0;
+  text-align: center;
+  font-family: "Righteous";
+  font-size: 50px;
+}
+.recentG_center h3 {
+  margin: 0;
+  text-align: center;
+  font-family: "Righteous";
+  font-size: 30px;
+}
+.recentG_center h3:hover {
+  color: #d31145;
+}
+
+.recentG_games {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 30px 0px;
+}
+
+.recentG_item {
+  width: 45%;
+  margin: 35px 0px;
+}
+/*for mobile. if screen size is <= 500px, make item width to 100% */
+@media (max-width: 500px) {
+  .recentG_item {
+    width: 100%;
+  }
+}
