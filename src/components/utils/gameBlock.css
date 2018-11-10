@@ -1,0 +1,41 @@
+.game_date {
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.home_team {
+  display: flex;
+}
+
+.away_team {
+  margin-top: 5px;
+  display: flex;
+}
+
+.left_block {
+  background: white;
+  border: 1px solid black; 
+  font-family: 'Righteous';
+  margin-right: 5px;
+  padding: 10px;
+  display: flex;
+  flex-grow: 1;
+}
+.left_block img {
+  width: 50px;
+  height: 50px;
+}
+.team_name {
+  font-size: 30px;
+  padding: 6px 10px;
+}
+
+.right_block { 
+  background: #0e1731;
+  width: 70px;
+  line-height: 70px;  /*height=lineHeight vertically centers text*/
+  color: #ffffff;
+  font-size: 35px;
+  text-align: center;
+} 
