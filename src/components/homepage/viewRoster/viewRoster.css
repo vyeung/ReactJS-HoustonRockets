@@ -1,0 +1,72 @@
+.viewRoster_main {
+  border-top: 1px solid black;
+  padding: 50px 0px 100px 0px;
+}
+
+.viewRoster_center {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.viewRoster_content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.viewRoster_cardstack {
+  position: relative;
+  width: 490px; 
+  height: 500px;
+  margin-right: 50px;
+}
+@media (max-width: 500px) {
+  .viewRoster_cardstack {
+    margin-right: 0px;
+  }
+}
+
+.card1 {
+  position: absolute;
+  top: 0;
+  right: 0px;
+}
+.card2 {
+  position: absolute;
+  top: 20px;
+  right: 55px;
+}
+.card3 {
+  position: absolute;
+  top: 40px;
+  right: 110px;
+}
+.card4 {
+  position: absolute;
+  top: 60px;
+  right: 165px;
+}
+
+.view, .the, .roster {
+  font-family: "Righteous";
+  font-size: 80px;
+  width: fit-content;
+  margin-bottom: 20px;
+  padding: 0px 10px;
+  border: 1px solid black;
+  color: white;
+  background: #0e1731;
+}
+
+.rosterLink {
+  font-family: "Righteous";
+  font-size: 30px;
+  width: fit-content;
+  padding: 0px 10px;
+  border: 1px solid black;
+  color: white;
+  background: #d31145;
+}
+.rosterLink:hover {
+  background: red;
+}
