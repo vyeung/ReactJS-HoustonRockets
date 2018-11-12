@@ -13,14 +13,22 @@
   font-family: "Righteous";
   font-size: 50px;
 }
-.recentG_center h3 {
-  margin: 0;
-  text-align: center;
+
+.recentG_link {
+  display: flex;
+  justify-content: center;
+}
+.recentG_link p {
   font-family: "Righteous";
   font-size: 30px;
+  margin: 0;
+  padding: 0 10px;
+  border: 1px solid black;
+  color: white;
+  background: #d31145;
 }
-.recentG_center h3:hover {
-  color: #d31145;
+.recentG_link p:hover {
+  background: red;
 }
 
 .recentG_games {

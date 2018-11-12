@@ -11,10 +11,12 @@ const recentGames = () => {
         <h2>Recent Games</h2>
         
         <Games />
-
-        <Link to="/games">
-          <h3>See All Games</h3>
-        </Link>
+        
+        <div className="recentG_link">
+          <Link to="/games">
+            <p>See All Games</p>
+          </Link>
+        </div>
       </div>
     </div>
   );
