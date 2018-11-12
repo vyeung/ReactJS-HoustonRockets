@@ -1,0 +1,42 @@
+.playerCard_wrapper {
+  background: linear-gradient(#363434, white);
+  border: 1px solid black; 
+  box-shadow: 0 5px 6px #ccc;
+  width: 300px;
+  padding: 10px 10px 20px 10px;
+  font-family: 'Righteous';
+}
+
+.playerCard_pic {
+  position: relative;
+  border: 1px solid #000000;
+  width: 100%;
+  height: 250px;
+}
+.playerCard_pic img {
+  position: absolute;
+  bottom: 1px;
+  width: 100%;
+}
+
+.playerCard_name {
+  margin: 5px 0px 10px 0px;
+  font-size: 25px;
+  color: red;
+}
+
+.playerCard_otherInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.playerCard_ht, .playerCard_wt, .playerCard_exp {
+  color: #0d1831;
+  font-size: 25px;
+}
+
+.playerCard_num {
+  color: #0d1831;
+  font-size: 50px;
+}
