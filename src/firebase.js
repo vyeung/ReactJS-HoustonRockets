@@ -15,6 +15,7 @@ firebase.initializeApp(config);
 
 const firebaseDB = firebase.database();
 const firebaseGames = firebaseDB.ref("games");
+const firebasePromotion = firebaseDB.ref("promotion");
 
 //for testing
 // firebaseDB.ref("games").once("value")
@@ -24,5 +25,6 @@ const firebaseGames = firebaseDB.ref("games");
 
 export {
   firebase,
-  firebaseGames
+  firebaseGames,
+  firebasePromotion
 }
