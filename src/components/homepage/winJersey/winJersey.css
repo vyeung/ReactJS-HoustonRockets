@@ -1,0 +1,63 @@
+.promo_main {
+  padding: 50px 0px 75px 0px;
+  border-top: 1px solid black;
+}
+
+.promo_center {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.promo_animations {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo_left { 
+  font-size: 90px;
+  font-family: 'Righteous', cursive;
+  margin-right: 50px;
+  color:#e02d2d;
+}
+.promo_left span {
+  display: block;
+}
+
+.promo_right img{
+  width: 400px;
+}
+
+/*###################################*/
+
+.enroll_wrapper {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.enroll_title {
+  font-family: 'Righteous';
+  font-size: 26px;
+  color: #4e4e4e;
+}
+
+.enroll_input {
+  width: 330px;
+  margin: 0 auto;
+  padding: 10px 0px;
+}
+
+.formSubmit_label {
+  color: darkblue;
+  font-weight: 600;
+  margin: 10px 0px;
+}
+
+.enroll_description {
+  font-weight: 300;
+  font-size: 12px;
+  width: 270px;
+  margin: 0 auto;
+  padding: 20px 0px 10px 0px;
+}

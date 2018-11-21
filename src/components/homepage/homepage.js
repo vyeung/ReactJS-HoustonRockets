@@ -4,6 +4,7 @@ import "./homepage.css";
 import Featured from "./featured/featured";
 import RecentGames from "./recentGames/recentGames";
 import ViewRoster from "./viewRoster/viewRoster";
+import WinJersey from "./winJersey/winJersey";
 
 const homepage = () => {
   return (
@@ -11,6 +12,7 @@ const homepage = () => {
       <Featured />
       <RecentGames />
       <ViewRoster />
+      <WinJersey />
     </div>
   );
 };
