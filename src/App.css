@@ -12,3 +12,25 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+input {
+  background: #fafafa;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  padding: 8px;
+  font-size: 17px;
+  font-family: Roboto;
+  font-weight: 300;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background: #0d1831;
+  border: 1px solid #0d1831;
+  border-radius: 3px;
+  color: #ffffff;
+  padding: 5px 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
