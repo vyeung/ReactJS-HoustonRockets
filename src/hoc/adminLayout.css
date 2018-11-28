@@ -1,0 +1,24 @@
+.admin_container {
+  margin-top: 82px;
+  display: flex;
+}
+
+.admin_left {
+  min-height: 100vh;
+  background: #282828;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin_NavLink {
+  color: white;
+  border-bottom: 1px solid #4b4b4b;
+  padding: 15px;
+}
+.admin_NavLink:hover {
+  background: black;
+}
+
+.admin_right {
+  flex-grow: 1;
+}
