@@ -61,12 +61,13 @@ class Login extends Component {
     if(overallFormIsValid === true) {
       firebase.auth().signInWithEmailAndPassword(dataToSubmit.email, dataToSubmit.password)
         .then(() => {
+          //doesn't show since the Redirect in publicRoutes is instant :/
           this.setState({formSubmitMsg: "Welcome!"});
-          
-          //redirect to /dashboard after 1.5s
-          setTimeout(() => {
-            this.props.history.push("/dashboard");
-          }, 1500);
+
+          // doesn't work due to same reason above
+          // setTimeout(() => {
+          //   this.props.history.push("/dashboard");
+          // }, 1500);
         })
         .catch(() => {
           this.setState({formSubmitMsg: "Invalid credentials"});
