@@ -1,20 +1,25 @@
 import React from 'react';
 import './App.css';
 
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import Layout from "./hoc/layout";
 import Home from "./components/homepage/homepage";
 import Login from "./components/login/Login";
 import Dashboard from "./components/admin/dashboard";
 
+import PrivateRoute from "./components/authRoutes/privateRoutes";
+import PublicRoute from "./components/authRoutes/publicRoutes";
+
 const App = (props) => {
-  
+
   return (
     <Layout>
       <Switch>
-        <Route exact component={Dashboard} path="/dashboard" />
-        <Route exact component={Login} path="/login" />
-        <Route exact component={Home} path="/" />
+        {/*...props will include the userInfo prop from index.js*/}
+        <PrivateRoute {...props} exact component={Dashboard} path="/dashboard" />
+
+        <PublicRoute {...props} exact component={Login} path="/login" hasRestrictions={true} />
+        <PublicRoute {...props} exact component={Home} path="/" hasRestrictions={false} />
       </Switch>
     </Layout>
   );
