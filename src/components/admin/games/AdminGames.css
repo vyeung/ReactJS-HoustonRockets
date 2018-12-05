@@ -1,0 +1,25 @@
+.admin_loading {
+  text-align: center;
+  margin: 50px 0px 0px 0px;
+}
+
+.admin_editMsg {
+  font-size: 20px;
+  font-style: italic;
+  padding: 20px 0px 20px 24px;
+}
+
+.admin_winResult {
+  font-weight: 700;
+  color: #4CAF50;
+}
+
+.admin_lossResult {
+  font-weight: 700;
+  color: #F44336;
+}
+
+.admin_otherResult {
+  font-weight: 700;
+  color: #353535;
+}
