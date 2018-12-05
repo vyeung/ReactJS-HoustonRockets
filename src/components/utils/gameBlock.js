@@ -6,7 +6,10 @@ const gameBlock = (props) => {
   return (
     <div>
       <div className="game_date">
-        {props.game.final ? props.game.date : `${props.game.date}: Result TBD`}
+        {props.game.result==="n/a" ? 
+          `${props.game.date}: Result TBD` 
+          : 
+          props.game.date}
       </div>
 
       <div className="home_team">
@@ -18,7 +21,7 @@ const gameBlock = (props) => {
           </div>
         </div>
         <div className="right_block">
-          {props.game.resultHome}
+          {props.game.scoreHome}
         </div>
       </div>
 
@@ -30,7 +33,7 @@ const gameBlock = (props) => {
           </div>
         </div>
         <div className="right_block">
-          {props.game.resultAway}
+          {props.game.scoreAway}
         </div>
       </div>
     </div>
