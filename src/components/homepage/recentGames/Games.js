@@ -14,11 +14,127 @@ class Games extends Component {
 
   componentDidMount() {
     //firebase get request
-    firebaseGames.limitToLast(6).once("value")
+    firebaseGames.once("value")
       .then((snapshot) => {
         const formattedGames = firebaseLooper(snapshot);
+        
+        let displayedGames = [];
+        let naPosition = 0;
+        
+        //want to show a max of 6 recent games
+        for(var i=0; i<formattedGames.length; i++) {
+          
+          //2 major code blocks are when formattedGames.length is <= or > 6
+          if(formattedGames.length <= 6) {
+            if(formattedGames[i].result === "n/a") {
+              if(naPosition === 0) {
+                break;
+              }
+              else if(naPosition === 1) {
+                displayedGames[0] = formattedGames[i-1];
+                break;
+              }
+              else if(naPosition === 2) {
+                displayedGames[0] = formattedGames[i-1];
+                displayedGames[1] = formattedGames[i-2];
+                break;
+              }
+              else if(naPosition === 3) {
+                displayedGames[0] = formattedGames[i-1];
+                displayedGames[1] = formattedGames[i-2];
+                displayedGames[2] = formattedGames[i-3];
+                break;
+              }
+              else if(naPosition === 4) {
+                displayedGames[0] = formattedGames[i-1];
+                displayedGames[1] = formattedGames[i-2];
+                displayedGames[2] = formattedGames[i-3];
+                displayedGames[3] = formattedGames[i-4];
+                break;
+              }
+              else if(naPosition === 5) {
+                displayedGames[0] = formattedGames[i-1];
+                displayedGames[1] = formattedGames[i-2];
+                displayedGames[2] = formattedGames[i-3];
+                displayedGames[3] = formattedGames[i-4];
+                displayedGames[4] = formattedGames[i-5];
+                break;
+              }
+            }
+            else if(i===formattedGames.length-1 && displayedGames.length===0) {
+              displayedGames[0] = formattedGames[i];
+              displayedGames[1] = formattedGames[i-1];
+              displayedGames[2] = formattedGames[i-2];
+              displayedGames[3] = formattedGames[i-3];
+              displayedGames[4] = formattedGames[i-4];
+              displayedGames[5] = formattedGames[i-5];
+            }
+          }
+          else if(formattedGames.length > 6) {
+            //cases where season just started but user added many games ahead
+            if(formattedGames[i].result==="n/a" && naPosition<=6) {
+              if(naPosition === 0) {
+                break;
+              }
+              else if(naPosition === 1) {
+                displayedGames[0] = formattedGames[i-1];
+                break;
+              }
+              else if(naPosition === 2) {
+                displayedGames[0] = formattedGames[i-1];
+                displayedGames[1] = formattedGames[i-2];
+                break;
+              }
+              else if(naPosition === 3) {
+                displayedGames[0] = formattedGames[i-1];
+                displayedGames[1] = formattedGames[i-2];
+                displayedGames[2] = formattedGames[i-3];
+                break;
+              }
+              else if(naPosition === 4) {
+                displayedGames[0] = formattedGames[i-1];
+                displayedGames[1] = formattedGames[i-2];
+                displayedGames[2] = formattedGames[i-3];
+                displayedGames[3] = formattedGames[i-4];
+                break;
+              }
+              else if(naPosition === 5) {
+                displayedGames[0] = formattedGames[i-1];
+                displayedGames[1] = formattedGames[i-2];
+                displayedGames[2] = formattedGames[i-3];
+                displayedGames[3] = formattedGames[i-4];
+                displayedGames[4] = formattedGames[i-5];
+                break;
+              }
+            }
+            //most regular case
+            else if(formattedGames[i].result==="n/a" && naPosition>6) {
+              displayedGames[0] = formattedGames[i-1];
+              displayedGames[1] = formattedGames[i-2];
+              displayedGames[2] = formattedGames[i-3];
+              displayedGames[3] = formattedGames[i-4];
+              displayedGames[4] = formattedGames[i-5];
+              displayedGames[5] = formattedGames[i-6];
+              break;
+            }
+            //case where all games in season have been played so no "n/a" left.
+            //we're at end of formattedGames and displayedGames length still = 0
+            else if(i===formattedGames.length-1 && displayedGames.length===0) {
+              displayedGames[0] = formattedGames[i];
+              displayedGames[1] = formattedGames[i-1];
+              displayedGames[2] = formattedGames[i-2];
+              displayedGames[3] = formattedGames[i-3];
+              displayedGames[4] = formattedGames[i-4];
+              displayedGames[5] = formattedGames[i-5];
+            }
+          }
+
+          naPosition++;         
+        }
+
         this.setState({
-          games: formattedGames
+          //reverse array so games are in chronological order
+          games: displayedGames.reverse()
         });
       });
   }
@@ -35,7 +151,8 @@ class Games extends Component {
             </div>
           </Slide>
         ))
-      :null
+        : 
+        null
     )
 
     return (
