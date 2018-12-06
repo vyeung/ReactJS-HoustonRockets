@@ -21,7 +21,7 @@ const gameBlock = (props) => {
           </div>
         </div>
         <div className="right_block">
-          {props.game.scoreHome}
+          {props.game.homeScore}
         </div>
       </div>
 
@@ -33,7 +33,7 @@ const gameBlock = (props) => {
           </div>
         </div>
         <div className="right_block">
-          {props.game.scoreAway}
+          {props.game.awayScore}
         </div>
       </div>
     </div>

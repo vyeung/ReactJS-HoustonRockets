@@ -83,7 +83,7 @@ class AdminGames extends Component {
                       </Link>
                     </TableCell>
                     <TableCell style={bodySize}>
-                      {game.scoreAway} - {game.scoreHome}
+                      {game.awayScore} - {game.homeScore}
                     </TableCell>
                     <TableCell style={bodySize}>
                       {this.gameResultHandler(game)}
