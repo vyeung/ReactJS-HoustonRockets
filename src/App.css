@@ -13,7 +13,7 @@ a {
   color: inherit;
 }
 
-input {
+input, select {
   background: #fafafa;
   border: 1px solid #d1d1d1;
   border-radius: 3px;
