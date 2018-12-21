@@ -9,6 +9,38 @@ const validate = (fieldType) => {
   let isValid;
   let message;
 
+  if(fieldType.validation.date) {
+    //regex for MM-DD-YYYY
+    const pattern = /^((0|1)\d{1})-((0|1|2)\d{1})-(\d{4})$/;
+
+    if(pattern.test(fieldType.value) === true) {
+      isValid = true;
+      message = "";
+    }
+    else {
+      isValid = false;
+      message = "Invalid date or specified format: MM-DD-YYYY";
+    }
+
+    isErrorFree = isValid===false ? [isValid, message] : isErrorFree;
+  }
+
+  if(fieldType.validation.number) {
+    //regex for whether input is a valid number or just one dash
+    const pattern = /^([0-9]+|[-]{1})$/; 
+
+    if(pattern.test(fieldType.value) === true) {
+      isValid = true;
+      message = "";
+    }
+    else {
+      isValid = false;
+      message = "Not a valid number or single -";
+    }
+
+    isErrorFree = isValid===false ? [isValid, message] : isErrorFree;
+  }
+  
   if(fieldType.validation.email) {
     //regex for checking whether input is a valid email
     const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
