@@ -17,6 +17,26 @@ const formField = (props) => {
         />
       );
     }
+
+    if(props.fieldData.htmlTag === "select") {
+      template = (
+        <select 
+          value={props.fieldData.value}
+          onChange={(event) => props.changed({event, myFieldType:props.fieldType})}
+        >
+          <option value="">Select One</option>
+          {
+            props.fieldData.config.options.map((item) => (
+              //key prop is required by map. value prop is what's sent to db
+              <option key={item.key} value={item.key}>
+                {item.value}
+              </option>
+            ))
+          }
+        </select>
+      );
+    }
+
     return template;
   }
 
