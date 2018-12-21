@@ -1,0 +1,39 @@
+.editGame_wrapper {
+  padding: 20px 20px 20px 40px;
+  width: 480px;
+}
+
+.editGame_wrapper h2 {
+  margin: 0px 0px 30px 0px;
+  border-bottom: 1px solid #dbdbdb;
+  color: #414141;
+  font-size: 40px;
+}
+
+.editGame_wrapper button {
+  font-size: 20px;
+}
+
+.editGame_grouping {
+  margin-bottom: 50px;
+}
+
+.editGame_label {
+  font-size: 20px;
+  margin: 10px 0px;
+  font-weight: 300;
+  background: #e5f4ff;
+  padding: 10px;
+  display: inline-block;
+}
+
+.editGame_score {
+  width: 150px;
+}
+
+.editGame_formSubmit {
+  color: darkblue;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 30px 0px 10px 0px;
+}
