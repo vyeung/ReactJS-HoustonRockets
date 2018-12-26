@@ -272,10 +272,9 @@ class EditGame extends Component {
               />
             </div>
 
-            <button>Confirm Changes</button>
-
-            <div className="editGame_formSubmit">
-              {this.state.formSubmitMsg}
+            <div className="editGame_grouping2">
+              <button>Confirm Changes</button> 
+              <div className="editGame_formSubmit">{this.state.formSubmitMsg}</div>
             </div>
           </form>
         </div>

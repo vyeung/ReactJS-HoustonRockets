@@ -18,6 +18,12 @@
   margin-bottom: 50px;
 }
 
+.editGame_grouping2 {
+  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .editGame_label {
   font-size: 20px;
   margin: 10px 0px;
@@ -35,5 +41,6 @@
   color: darkblue;
   font-weight: 600;
   font-size: 20px;
-  margin: 30px 0px 10px 0px;
+  line-height: 34px;
+  padding-left: 25px;
 }
