@@ -11,7 +11,7 @@ const validate = (fieldType) => {
 
   if(fieldType.validation.date) {
     //regex for MM-DD-YYYY
-    const pattern = /^((0|1)\d{1})-((0|1|2)\d{1})-(\d{4})$/;
+    const pattern = /^(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])-((19|20|21)\d{2})$/;
 
     if(pattern.test(fieldType.value) === true) {
       isValid = true;
