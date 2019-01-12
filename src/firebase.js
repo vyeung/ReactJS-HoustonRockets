@@ -18,6 +18,7 @@ const firebaseDB = firebase.database();
 const firebaseGames = firebaseDB.ref("games");
 const firebasePromotion = firebaseDB.ref("promotion");
 const firebaseTeams = firebaseDB.ref("teams");
+const firebasePlayers = firebaseDB.ref("players");
 
 //for testing
 // firebaseDB.ref("games").once("value")
@@ -30,5 +31,6 @@ export {
   firebaseDB,
   firebaseGames,
   firebasePromotion,
-  firebaseTeams
+  firebaseTeams,
+  firebasePlayers
 }
