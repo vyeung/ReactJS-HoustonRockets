@@ -1,0 +1,10 @@
+.adminPlayers_loading {
+  text-align: center;
+  margin: 50px 0px 0px 0px;
+}
+
+.adminPlayers_editMsg {
+  font-size: 20px;
+  font-style: italic;
+  padding: 20px 0px 20px 24px;
+}
