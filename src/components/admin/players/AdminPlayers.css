@@ -46,6 +46,12 @@
   padding-left: 20px;
 }
 
+.addEditPlayer_grouping3 {
+  margin-bottom: 35px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .addEditPlayer_label {
   font-size: 20px;
   margin: 10px 0px;
@@ -85,4 +91,11 @@
   padding: 5px 10px;
   font-size: 17px;
   cursor: pointer;
+}
+
+/*#############################################*/
+
+.deletePlayer {
+  background: #db0b27;
+  margin-bottom: 20px;
 }

@@ -225,8 +225,14 @@ class EditPlayer extends Component {
             this.props.history.push("/admin_players");
           }, 2000);
         })
-      //upload img to firebase storage
-      firebase.storage().ref("playerImgs/" + this.state.editPlayerForm.image.value).put(this.state.selectedFile);
+      //user submitted new things without changing player img
+      if(this.state.fileURL) {
+        //do nothing regarding player img
+      }
+      //user changed photo, so upload img to firebase storage
+      else {
+        firebase.storage().ref("playerImgs/" + this.state.editPlayerForm.image.value).put(this.state.selectedFile);
+      }
     }
     else {
       this.setState({formSubmitMsg: "Please submit valid fields"});
@@ -252,6 +258,26 @@ class EditPlayer extends Component {
   fileSelectedHandler = (event) => {
     this.setState({selectedFile: event.target.files[0]});
     this.storeFilename(event.target.files[0].name);
+  }
+
+  deletePlayerHandler = () => {
+    //user wants to continue with delete
+    if(window.confirm("Are you sure? This action is permanent.") === true) {
+      //remove player node
+      firebaseDB.ref(`players/${this.state.playerId}`).remove()
+        .then(() => {
+          //remove player img
+          firebase.storage().ref("playerImgs/" + this.state.editPlayerForm.image.value).delete()
+          .then(() => {
+            setTimeout(() => {
+              this.props.history.push("/admin_players");
+            }, 1000);
+          })
+        })
+    }
+    //user cancelled, don't need to do anything
+    else {
+    }
   }
 
   render() {
@@ -370,11 +396,15 @@ class EditPlayer extends Component {
               />
             </div>
 
-            <div className="addEditPlayer_grouping2">
+            <div className="addEditPlayer_grouping3">
               <button>Confirm Changes</button> 
               <div className="addEditPlayer_formSubmit">{this.state.formSubmitMsg}</div>
             </div>
           </form>
+
+          <button className="deletePlayer" onClick={this.deletePlayerHandler}>
+            Delete Player
+          </button>
         </div>
       </AdminLayout>
     )
