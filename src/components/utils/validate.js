@@ -19,13 +19,45 @@ const validate = (fieldType) => {
     }
     else {
       isValid = false;
-      message = "Invalid date or specified format: MM-DD-YYYY";
+      message = "Not in specified format: MM-DD-YYYY";
+    }
+
+    isErrorFree = isValid===false ? [isValid, message] : isErrorFree;
+  }
+
+  if(fieldType.validation.letters) {
+    //regex for letters only
+    const pattern = /^[a-zA-Z]+$/;
+
+    if(pattern.test(fieldType.value) === true) {
+      isValid = true;
+      message = "";
+    }
+    else {
+      isValid = false;
+      message = "Only letters allowed";
     }
 
     isErrorFree = isValid===false ? [isValid, message] : isErrorFree;
   }
 
   if(fieldType.validation.number) {
+    //regex for whether input is a valid number
+    const pattern = /^[0-9]+$/; 
+
+    if(pattern.test(fieldType.value) === true) {
+      isValid = true;
+      message = "";
+    }
+    else {
+      isValid = false;
+      message = "Invalid number";
+    }
+
+    isErrorFree = isValid===false ? [isValid, message] : isErrorFree;
+  }
+
+  if(fieldType.validation.numOrDash) {
     //regex for whether input is a valid number or just one dash
     const pattern = /^([0-9]+|[-]{1})$/; 
 
@@ -51,7 +83,7 @@ const validate = (fieldType) => {
     }
     else {
       isValid = false;
-      message = "Must be a valid email";
+      message = "Invalid email";
     }
     //depending on isValid value, isErrorFree=[isValid, message] or what's currently stored in line 7
     isErrorFree = isValid===false ? [isValid, message] : isErrorFree;
@@ -61,7 +93,7 @@ const validate = (fieldType) => {
   if(fieldType.validation.required) {
     if(fieldType.value.trim() === "") {
       isValid = false;
-      message = "This field is required";
+      message = "Field Required";
     }
     else {
       isValid = true;
