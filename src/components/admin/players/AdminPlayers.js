@@ -34,7 +34,7 @@ class AdminPlayers extends Component {
   }
 
   render() {
-    console.log(this.state.players);
+    //console.log(this.state.players);
     const titleSize = {fontSize: "30px"};
     const bodySize = {fontSize: "20px"};
 
@@ -62,7 +62,7 @@ class AdminPlayers extends Component {
                 this.state.players.map((player, i) => (
                   <TableRow key={i}>
                     <TableCell style={bodySize}>
-                      {player.number}
+                      {player.jerseyNum}
                     </TableCell>
                     <TableCell style={bodySize}>
                       <Link to={`/admin_players/edit_player/${player.id}`}>
@@ -73,7 +73,7 @@ class AdminPlayers extends Component {
                       {player.position}
                     </TableCell>
                     <TableCell style={bodySize}>
-                      {player.height}
+                      {player.heightFt + "' " + player.heightIn}
                     </TableCell>
                     <TableCell style={bodySize}>
                       {player.weight} lbs
