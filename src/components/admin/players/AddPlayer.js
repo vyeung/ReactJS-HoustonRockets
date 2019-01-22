@@ -221,8 +221,6 @@ class AddPlayer extends Component {
   }
   
   render() {
-    console.log(this.state);
-
     let imgMode = null;
     if(this.state.selectedFile) {
       imgMode = (
