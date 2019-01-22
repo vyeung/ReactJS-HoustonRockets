@@ -8,3 +8,81 @@
   font-style: italic;
   padding: 20px 0px 20px 24px;
 }
+
+/*#############################################*/
+
+.addEditPlayer_wrapper {
+  padding: 20px 20px 20px 40px;
+  width: 480px;
+}
+
+.addEditPlayer_wrapper h2 {
+  margin: 0px 0px 30px 0px;
+  border-bottom: 1px solid #dbdbdb;
+  color: #414141;
+  font-size: 40px;
+}
+
+.addEditPlayer_wrapper button {
+  font-size: 20px;
+}
+
+.addEditPlayer_grouping {
+  margin-bottom: 50px;
+}
+
+.addEditPlayer_grouping2 {
+  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.grouping2_name {
+  width: 230px;
+}
+.grouping2_height {
+  width: 106px;
+}
+.grouping2_name:last-child, .grouping2_height:last-child {
+  padding-left: 20px;
+}
+
+.addEditPlayer_label {
+  font-size: 20px;
+  margin: 10px 0px;
+  font-weight: 300;
+  background: #e5f4ff;
+  padding: 10px;
+  display: inline-block;
+}
+
+.addEditPlayer_formSubmit {
+  color: darkblue;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 34px;  /*height=lineHeight vertically centers*/
+  padding-left: 25px;
+}
+
+/*#############################################*/
+
+.fileUpload_container {
+  text-align: center;
+  padding: 10px 5px 0px 5px;
+}
+.fileUpload_container img {
+  /*images too big will scale down to fit div, while smaller images will stay the 
+  same and not be scaled up to look pixelated*/
+  max-width: 100%;
+}
+
+.fileUpload_remove {
+  width: 110px;
+  background: #db0b43;
+  border: 1px solid black;
+  border-radius: 3px;
+  color: white;
+  margin: 5px auto 0px auto;
+  padding: 5px 10px;
+  font-size: 17px;
+  cursor: pointer;
+}
