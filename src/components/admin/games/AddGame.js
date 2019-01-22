@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./AddGame.css";
+import "./AdminGames.css";
 
 import AdminLayout from "../../../hoc/adminLayout";
 import FormField from "../../utils/formField";
@@ -210,12 +210,12 @@ class AddGame extends Component {
     console.log(this.state.addGameForm);
     return (
       <AdminLayout>
-        <div className="addGame_wrapper">
+        <div className="addEditGame_wrapper">
           <h2>Add Game</h2>
 
           <form onSubmit={this.submitFormHandler}>
-            <div className="addGame_grouping">
-              <div className="addGame_label">Game Date</div>
+            <div className="addEditGame_grouping">
+              <div className="addEditGame_label">Game Date</div>
               <FormField
                 fieldType="date"
                 fieldData={this.state.addGameForm.date}
@@ -223,15 +223,15 @@ class AddGame extends Component {
               />
             </div>
             
-            <div className="addGame_grouping">
-              <div className="addGame_label">Home Team</div>
+            <div className="addEditGame_grouping">
+              <div className="addEditGame_label">Home Team</div>
               <FormField
                 fieldType="home"
                 fieldData={this.state.addGameForm.home}
                 changed={this.updateFormHandler}
               />
-              <div className="addGame_label">Home Score</div>
-              <div className="addGame_score">
+              <div className="addEditGame_label">Home Score</div>
+              <div className="addEditGame_score">
                 <FormField
                   fieldType="homeScore"
                   fieldData={this.state.addGameForm.homeScore}
@@ -239,14 +239,14 @@ class AddGame extends Component {
                 />
               </div>
 
-              <div className="addGame_label">Away Team</div>
+              <div className="addEditGame_label">Away Team</div>
               <FormField
                 fieldType="away"
                 fieldData={this.state.addGameForm.away}
                 changed={this.updateFormHandler}
               />
-              <div className="addGame_label">Away Score</div>
-              <div className="addGame_score">
+              <div className="addEditGame_label">Away Score</div>
+              <div className="addEditGame_score">
                 <FormField
                   fieldType="awayScore"
                   fieldData={this.state.addGameForm.awayScore}
@@ -255,8 +255,8 @@ class AddGame extends Component {
               </div>
             </div>
 
-            <div className="addGame_grouping">
-              <div className="addGame_label">Game Result</div>
+            <div className="addEditGame_grouping">
+              <div className="addEditGame_label">Game Result</div>
               <FormField
                 fieldType="result"
                 fieldData={this.state.addGameForm.result}
@@ -264,9 +264,9 @@ class AddGame extends Component {
               />
             </div>
 
-            <div className="addGame_grouping2">
+            <div className="addEditGame_grouping2">
               <button>Add Game</button> 
-              <div className="addGame_formSubmit">{this.state.formSubmitMsg}</div>
+              <div className="addEditGame_formSubmit">{this.state.formSubmitMsg}</div>
             </div>
           </form>
         </div>
