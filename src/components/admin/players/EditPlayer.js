@@ -371,7 +371,7 @@ class EditPlayer extends Component {
             </div>
 
             <div className="addEditPlayer_grouping2">
-              <button>Edit Player</button> 
+              <button>Confirm Changes</button> 
               <div className="addEditPlayer_formSubmit">{this.state.formSubmitMsg}</div>
             </div>
           </form>
