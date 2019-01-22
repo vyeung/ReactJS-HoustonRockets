@@ -11,8 +11,6 @@ import firebaseLooper from "../../utils/firebaseLooper";
 class AddGame extends Component {
 
   state = {
-    gameId: "",
-    formType: "",
     formError: "false",
     formSubmitMsg: "",
     teams: [],
@@ -54,7 +52,7 @@ class AddGame extends Component {
         },
         validation: {
           required: true,
-          number: true
+          numOrDash: true
         },
         valid: false,
         validationMsg: ""
@@ -82,7 +80,7 @@ class AddGame extends Component {
         },
         validation: {
           required: true,
-          number: true
+          numOrDash: true
         },
         valid: false,
         validationMsg: ""
@@ -202,7 +200,6 @@ class AddGame extends Component {
     updatedForm[elem.myFieldType].value = elem.event.target.value;
 
     let checkValid = validate(updatedForm[elem.myFieldType]);
-
     updatedForm[elem.myFieldType].valid = checkValid[0];
     updatedForm[elem.myFieldType].validationMsg = checkValid[1];
 
