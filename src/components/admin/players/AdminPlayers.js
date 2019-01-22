@@ -26,6 +26,8 @@ class AdminPlayers extends Component {
     firebasePlayers.once("value")
       .then((snapshot) => {
         const formattedPlayers = firebaseLooper(snapshot);
+        formattedPlayers.sort(this.compare);
+        
         this.setState({
           isLoading: false,
           players: formattedPlayers
@@ -33,8 +35,17 @@ class AdminPlayers extends Component {
       })
   }
 
+  //sort alphabetically by lastname in descending order
+  compare = (a,b) => {
+    if(a.lastname < b.lastname)
+      return -1;
+    if(a.lastname > b.lastname)
+      return 1;
+    
+    return 0;
+  }
+
   render() {
-    //console.log(this.state.players);
     const titleSize = {fontSize: "30px"};
     const bodySize = {fontSize: "20px"};
 
