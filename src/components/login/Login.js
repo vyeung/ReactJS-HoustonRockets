@@ -30,7 +30,8 @@ class Login extends Component {
         value: "",
         config: {
           name: "password_input",
-          placeholder: "Enter your password..."
+          placeholder: "Enter your password...",
+          autoComplete: "off"
         },
         validation: {
           required: true,
@@ -56,7 +57,6 @@ class Login extends Component {
         break;
       }
     }
-    //console.log(dataToSubmit);
 
     if(overallFormIsValid === true) {
       firebase.auth().signInWithEmailAndPassword(dataToSubmit.email, dataToSubmit.password)
@@ -88,11 +88,9 @@ class Login extends Component {
 
   updateFormHandler = (elem) => {
     const updatedForm = {...this.state.loginForm};
-
     updatedForm[elem.myFieldType].value = elem.event.target.value;
 
     let checkValid = validate(updatedForm[elem.myFieldType]);
-
     updatedForm[elem.myFieldType].valid = checkValid[0];
     updatedForm[elem.myFieldType].validationMsg = checkValid[1];
 
