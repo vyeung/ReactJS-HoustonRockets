@@ -1,0 +1,27 @@
+.roster_container {
+  margin-top: 80px;
+  padding: 20px 20px 20px 50px;
+  background-color: #C4CED4;
+  min-height: 100vh;
+}
+
+.roster_grouping {
+  margin: 30px 0px 50px 0px;
+}
+
+.roster_title {
+  font-size: 80px;
+  margin-bottom: 20px;
+  font-family: 'Righteous', cursive;
+  color: black;
+}
+
+.roster_cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.roster_player {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
