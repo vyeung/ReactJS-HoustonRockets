@@ -5,6 +5,7 @@ import { Switch } from "react-router-dom";
 import Layout from "./hoc/layout";
 import Home from "./components/homepage/homepage";
 import Login from "./components/login/Login";
+import Roster from "./components/roster/Roster";
 
 import Dashboard from "./components/admin/dashboard";
 import AdminGames from "./components/admin/games/AdminGames";
@@ -32,6 +33,7 @@ const App = (props) => {
         <PrivateRoute {...props} exact component={AddPlayer} path="/admin_players/add_player" />
 
         <PublicRoute {...props} exact component={Login} path="/login" hasRestrictions={true} />
+        <PublicRoute {...props} exact component={Roster} path="/roster" hasRestrictions={false} />
         <PublicRoute {...props} exact component={Home} path="/" hasRestrictions={false} />
       </Switch>
     </Layout>
