@@ -16,24 +16,24 @@ class Header extends Component {
 
     const buttonStyles = {
       color: "inherit",
-      fontSize: "1em"
+      fontSize: "1.3em"
     };
 
     return (
       <AppBar position="fixed" style={appBarStyle}>
-        <Toolbar style={{display:"flex"}}>
-          {/*flexGrow makes the 2 links below align to the right*/}
-          <div style={{flexGrow: 1}}> 
-            <RocketsLogo isLink={true} linkTo="/" width="70px" height="70px" />
+        <Toolbar style={{display:"flex", justifyContent:"space-between"}}>
+          <div > 
+            <RocketsLogo isLink={true} linkTo="/" width="60px" height="70px" />
           </div>
 
-          <Link to="/roster">
-            <Button style={buttonStyles}>Roster</Button>
-          </Link>
-
-          <Link to="/games">
-            <Button style={buttonStyles}>Games</Button>
-          </Link>
+          <div>
+            <Link to="/roster">
+              <Button style={buttonStyles}>Roster</Button>
+            </Link>
+            <Link to="/games">
+              <Button style={buttonStyles}>Games</Button>
+            </Link>
+          </div>
         </Toolbar>
       </AppBar>
     );
