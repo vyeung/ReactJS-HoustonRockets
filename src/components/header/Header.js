@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import RocketsLogo from "../utils/logo";
 import { Link } from "react-router-dom";
+import { firebase } from "../../firebase";
 
 class Header extends Component {
+
+  checkAuth = () => {
+    var user = firebase.auth().currentUser;
+    if(user)
+      return true;  //we have a logged in admin user
+    else
+      return false; //we don't have a logged in admin user
+  }
+
   render() {
     const appBarStyle = {
       backgroundColor: "#d31145",
@@ -33,6 +44,15 @@ class Header extends Component {
             <Link to="/games">
               <Button style={buttonStyles}>Games</Button>
             </Link>
+
+            {/*only logged in admin users can see dashboard link*/}
+            {this.checkAuth() ?
+              <Link to="/dashboard">
+                <Button style={buttonStyles}>Dashboard</Button>
+              </Link>
+              :
+              null
+            }
           </div>
         </Toolbar>
       </AppBar>
