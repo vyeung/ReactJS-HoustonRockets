@@ -3,7 +3,7 @@ import "./viewRoster.css";
 
 import { Link } from "react-router-dom";
 import PlayerCard from "../../utils/playerCard";
-import Harden from "../../../assets/players/pointGuard/james_harden.png";
+import Harden from "../../../assets/otherImages/james_harden.png";
 import Fade from "react-reveal/Fade";
 
 const viewRoster = () => {
@@ -29,7 +29,7 @@ const viewRoster = () => {
                   number="13"
                   firstname="James"
                   lastname="Harden"
-                  height="6'5"
+                  height="6' 5"
                   weight="220"
                   exp="9"
                   bck={Harden} 
