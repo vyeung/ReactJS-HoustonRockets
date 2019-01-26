@@ -21,11 +21,10 @@ class EditGame extends Component {
         value: "",
         config: {
           name: "date_input",
-          placeholder: "MM-DD-YYYY"
+          type: "date"
         },
         validation: {
           required: true,
-          date: true
         },
         valid: false,
         validationMsg: ""
@@ -221,6 +220,7 @@ class EditGame extends Component {
   }
 
   render() {
+    // console.log(this.state.editGameForm);
     return (
       <AdminLayout>
         <div className="addEditGame_wrapper">
