@@ -1,0 +1,120 @@
+.schedule_container {
+  margin-top: 80px;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/*###########################################*/
+
+.schedule_left {
+  flex-grow: 1;
+}
+
+.schedule_filters {
+  display: flex;
+  border-bottom: 1px solid #01285e;
+  background: #dff1ff;
+}
+
+.filter_box {
+  padding: 15px 30px;
+  border-right: 1px solid #01285e;
+}
+
+.filter_title {
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: black;
+}
+
+.filter_options {
+  display: flex;
+}
+
+.filter_option {
+  background: #ffffff;
+  padding: 5px 9px;
+  font-size: 17px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.myActive {
+  background: #62a2d3;
+}
+
+/*#####################*/
+
+.gameList_block {
+  width: 100%;
+  border-bottom: 2px solid #98c6e9;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.gameList_date {
+  padding: 0px 60px 0px 10px;
+  font-size: 20px;
+}
+
+.gameList_opponent {
+  font-size: 20px;
+  width: 175px;
+  padding-right: 60px;
+  display: flex;
+  align-items: center;
+}
+.gameList_opponent img {
+  width: 30px;
+  height: 30px;
+}
+.atVersus, .teamIcon{
+  padding-right: 10px;
+}
+
+.gameList_result {
+  font-size: 20px;
+  display: flex;
+}
+.result_indicator {
+  width: 25px;
+}
+.gamesList_win {
+  font-weight: 700;
+  color: #4CAF50;
+}
+.gamesList_loss {
+  font-weight: 700;
+  color: #F44336;
+}
+.gamesList_other {
+  font-weight: 700;
+  color: #353535;
+}
+
+/*###########################################*/
+
+.schedule_right {
+  width: 400px;
+}
+
+.conf_wrapper {
+  background: #d31145;
+  border-left: 1px solid black;
+}
+
+.conf_title {
+  color: white;
+  font-size: 25px;
+  border-bottom: 1px solid black;
+  padding: 34px 20px;
+  text-align: center;
+}
+
+.conf_loading {
+  text-align: center;
+}
