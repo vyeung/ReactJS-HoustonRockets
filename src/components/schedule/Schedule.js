@@ -27,7 +27,6 @@ class Schedule extends Component {
     firebaseGames.once("value")
       .then(snapshot => {
         const formattedGames = firebaseLooper(snapshot);
-        console.log(formattedGames);
 
         //sort by date
         formattedGames.sort((a, b) => {
