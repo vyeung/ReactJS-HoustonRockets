@@ -6,8 +6,8 @@ const gameBlock = (props) => {
   return (
     <div>
       <div className="game_date">
-        {props.game.result==="n/a" ? 
-          `${props.game.date}: Result TBD` 
+        {props.game.result==="C" ? 
+          `${props.game.date}: Cancelled` 
           : 
           props.game.date}
       </div>

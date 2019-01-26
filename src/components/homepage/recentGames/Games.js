@@ -3,6 +3,8 @@ import "./recentGames.css";
 
 import { firebaseGames } from "../../../firebase";
 import firebaseLooper from "../../utils/firebaseLooper";
+import convertDate from "../../utils/convertDate";
+
 import GameBlock from "../../utils/gameBlock";
 import Slide from "react-reveal/Slide";
 
@@ -18,6 +20,16 @@ class Games extends Component {
       .then((snapshot) => {
         const formattedGames = firebaseLooper(snapshot);
         
+        //sort by date
+        formattedGames.sort((a, b) => {
+          return a.date.localeCompare(b.date);
+        })
+
+        //now convert the date
+        for(let key in formattedGames) {
+          formattedGames[key].date = convertDate(formattedGames[key].date);
+        }
+
         let displayedGames = [];
         let naPosition = 0;
         
@@ -133,31 +145,25 @@ class Games extends Component {
         }
 
         this.setState({
-          //reverse array so games are in chronological order
+          //reverse array so games are in ascending order again
           games: displayedGames.reverse()
         });
       });
   }
 
   render() {
-    console.log(this.state.games);
-
-    let showScores = (
-      this.state.games ?
-        this.state.games.map((g) => (
-          <Slide bottom key={g.id}>
-            <div className="recentG_item">
-              <GameBlock game={g} />
-            </div>
-          </Slide>
-        ))
-        : 
-        null
-    )
-
     return (
       <div className="recentG_games">
-        {showScores}
+        {this.state.games ?
+          this.state.games.map((g) => (
+            <Slide bottom key={g.id}>
+              <div className="recentG_item">
+                <GameBlock game={g} />
+              </div>
+            </Slide>
+          ))
+          : 
+          null}
       </div>
     );
   }
