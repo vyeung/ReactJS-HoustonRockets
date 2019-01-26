@@ -1,0 +1,17 @@
+.notFound_container {
+  margin-top: 150px;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: "Righteous", cursive;
+  color: #3f3b3b;
+  text-align: center;
+}
+
+.notFound1 {
+  font-size: 100px;
+  margin-bottom: 20px;
+}
+
+.notFound2 {
+  font-size: 75px;
+}
