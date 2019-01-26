@@ -57,14 +57,15 @@
 }
 
 .gameList_date {
-  padding: 0px 60px 0px 10px;
+  width: 130px;
+  padding: 0px 70px 0px 10px;
   font-size: 20px;
 }
 
 .gameList_opponent {
   font-size: 20px;
   width: 175px;
-  padding-right: 60px;
+  padding-right: 70px;
   display: flex;
   align-items: center;
 }

@@ -3,6 +3,7 @@ import "./Schedule.css";
 
 import { firebaseGames } from "../../firebase";
 import firebaseLooper from "../utils/firebaseLooper";
+import convertDate from "../utils/convertDate";
 
 import ConfStandings from "./ConfStandings";
 import GamesList from "./gamesList";
@@ -26,6 +27,17 @@ class Schedule extends Component {
     firebaseGames.once("value")
       .then(snapshot => {
         const formattedGames = firebaseLooper(snapshot);
+        console.log(formattedGames);
+
+        //sort by date
+        formattedGames.sort((a, b) => {
+          return a.date.localeCompare(b.date);
+        })
+
+        //now convert the date
+        for(let key in formattedGames) {
+          formattedGames[key].date = convertDate(formattedGames[key].date);
+        }
 
         this.setState({
           isLoading: false,
