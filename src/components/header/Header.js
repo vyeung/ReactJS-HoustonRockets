@@ -41,8 +41,8 @@ class Header extends Component {
             <Link to="/roster">
               <Button style={buttonStyles}>Roster</Button>
             </Link>
-            <Link to="/games">
-              <Button style={buttonStyles}>Games</Button>
+            <Link to="/schedule">
+              <Button style={buttonStyles}>Schedule</Button>
             </Link>
 
             {/*only logged in admin users can see dashboard link*/}

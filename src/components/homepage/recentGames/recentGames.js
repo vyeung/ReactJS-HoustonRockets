@@ -13,8 +13,8 @@ const recentGames = () => {
         <Games />
         
         <div className="recentG_link">
-          <Link to="/games">
-            <p>See All Games</p>
+          <Link to="/schedule">
+            <p>See Full Schedule</p>
           </Link>
         </div>
       </div>
