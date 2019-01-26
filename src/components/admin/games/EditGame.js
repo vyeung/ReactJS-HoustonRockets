@@ -219,6 +219,23 @@ class EditGame extends Component {
     this.setState({editGameForm: updatedForm});
   }
 
+  deleteGameHandler = () => {
+    //user wants to continue with delete
+    if(window.confirm("Are you sure? This action is permanent.") === true) {
+      //remove game node
+      firebaseDB.ref(`games/${this.state.gameId}`).remove()
+        .then(() => {
+          setTimeout(() => {
+            this.props.history.push("/admin_games");
+          }, 1000);
+        })
+    }
+    //user cancelled, don't need to do anything
+    else {
+    }
+  }
+
+
   render() {
     // console.log(this.state.editGameForm);
     return (
@@ -277,11 +294,15 @@ class EditGame extends Component {
               />
             </div>
 
-            <div className="addEditGame_grouping2">
+            <div className="addEditGame_grouping3">
               <button>Confirm Changes</button> 
               <div className="addEditGame_formSubmit">{this.state.formSubmitMsg}</div>
             </div>
           </form>
+
+          <button className="deleteGame" onClick={this.deleteGameHandler}>
+            Delete Game
+          </button>
         </div>
       </AdminLayout>
     );

@@ -52,6 +52,12 @@
   flex-wrap: wrap;
 }
 
+.addEditGame_grouping3 {
+  margin-bottom: 35px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .addEditGame_label {
   font-size: 20px;
   margin: 10px 0px;
@@ -71,4 +77,11 @@
   font-size: 20px;
   line-height: 34px;  /*height=lineHeight vertically centers*/
   padding-left: 25px;
+}
+
+/*##########################################*/
+
+.deleteGame {
+  background: #db0b27;
+  margin-bottom: 20px;
 }
