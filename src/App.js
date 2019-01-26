@@ -7,6 +7,7 @@ import Home from "./components/homepage/homepage";
 import Login from "./components/login/Login";
 import Roster from "./components/roster/Roster";
 import Schedule from "./components/schedule/Schedule";
+import NotFound from "./components/notFound/notFound";
 
 import Dashboard from "./components/admin/dashboard";
 import AdminGames from "./components/admin/games/AdminGames";
@@ -37,6 +38,8 @@ const App = (props) => {
         <PublicRoute {...props} exact component={Roster} path="/roster" hasRestrictions={false} />
         <PublicRoute {...props} exact component={Schedule} path="/schedule" hasRestrictions={false} />
         <PublicRoute {...props} exact component={Home} path="/" hasRestrictions={false} />
+      
+        <PublicRoute {...props} component={NotFound} hasRestrictions={false} />
       </Switch>
     </Layout>
   );
