@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import { firebaseGames } from "../../../firebase";
 import firebaseLooper from "../../utils/firebaseLooper";
 import AdminLayout from "../../../hoc/adminLayout";
+import convertDate from "../../utils/convertDate";
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -26,6 +27,12 @@ class AdminGames extends Component {
     firebaseGames.once("value")
       .then((snapshot) => {
         const formattedGames = firebaseLooper(snapshot);
+
+        //sort by date
+        formattedGames.sort((a, b) => {
+          return a.date.localeCompare(b.date);
+        })
+
         this.setState({
           isLoading: false,
           games: formattedGames
@@ -75,7 +82,7 @@ class AdminGames extends Component {
                 this.state.games.map((game, i) => (
                   <TableRow key={i}>
                     <TableCell style={bodySize}>
-                      {game.date}
+                      {convertDate(game.date)}
                     </TableCell>
                     <TableCell style={bodySize}>
                       <Link to={`/admin_games/edit_game/${game.id}`}>
