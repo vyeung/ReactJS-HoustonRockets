@@ -171,13 +171,20 @@ class EditGame extends Component {
   submitFormHandler = (event) => {
     event.preventDefault();
     
-    let dataToSubmit = {};
+    let dataToSubmit = {
+      away: this.state.editGameForm.away.value,
+      awayScore: this.state.editGameForm.awayScore.value,
+      awayThmb: this.state.editGameForm.away.value.toLowerCase(),
+      date: this.state.editGameForm.date.value,
+      home: this.state.editGameForm.home.value,
+      homeScore: this.state.editGameForm.homeScore.value,
+      homeThmb: this.state.editGameForm.home.value.toLowerCase(),
+      result: this.state.editGameForm.result.value
+    };
     let overallFormIsValid = true;
 
-    for(var key in this.state.editGameForm) {
-      dataToSubmit[key] = this.state.editGameForm[key].value;
-      
-      //don't need to continue loop if a field is submitted with errors
+    //check if any field is submitted with errors
+    for (var key in this.state.editGameForm) {
       if(this.state.editGameForm[key].valid === false) {
         overallFormIsValid = false;
         break;
