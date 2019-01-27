@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./Header.css";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -7,7 +8,15 @@ import RocketsLogo from "../utils/logo";
 import { Link } from "react-router-dom";
 import { firebase } from "../../firebase";
 
+import MenuIcon from "@material-ui/icons/Menu";
+import IconButton from "@material-ui/core/IconButton";
+import SideDrawer from "./sideDrawer";
+
 class Header extends Component {
+
+  state = {
+    openDrawer: false
+  }
 
   checkAuth = () => {
     var user = firebase.auth().currentUser;
@@ -15,6 +24,10 @@ class Header extends Component {
       return true;  //we have a logged in admin user
     else
       return false; //we don't have a logged in admin user
+  }
+
+  toggleDrawerHandler = (value) => {
+    this.setState({openDrawer: value});
   }
 
   render() {
@@ -37,7 +50,7 @@ class Header extends Component {
             <RocketsLogo isLink={true} linkTo="/" width="60px" height="70px" />
           </div>
 
-          <div>
+          <div className="desktop_version">
             <Link to="/roster">
               <Button style={buttonStyles}>Roster</Button>
             </Link>
@@ -51,8 +64,23 @@ class Header extends Component {
                 <Button style={buttonStyles}>Dashboard</Button>
               </Link>
               :
-              null
-            }
+              null}
+          </div>
+
+          <div className="mobile_version">
+            <IconButton 
+              color="inherit" 
+              aria-label="Menu" 
+              onClick={()=>this.toggleDrawerHandler(true)}
+            >
+              <MenuIcon />
+            </IconButton>
+
+            <SideDrawer
+              openDrawer={this.state.openDrawer}
+              onCloseProp={(value) => this.toggleDrawerHandler(value)} 
+              isAuth={this.checkAuth() ? true : false}
+            />
           </div>
         </Toolbar>
       </AppBar>

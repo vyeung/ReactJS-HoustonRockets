@@ -1,0 +1,13 @@
+/*on mobile, hide desktop items*/
+@media (max-width: 499px) {
+  .desktop_version {
+    display: none;
+  }
+}
+
+/*on desktop, hide mobile sideDrawer button*/
+@media (min-width: 500px) {
+  .mobile_version {
+    display: none;
+  }
+}
