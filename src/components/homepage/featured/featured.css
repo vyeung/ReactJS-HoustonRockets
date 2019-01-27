@@ -1,10 +1,10 @@
 .featured_wrapper {
-  width: 100%;
-  margin: 0 auto;
   margin-top: 80px;  /*aligns the div just below header*/
   height: 89vh;
   overflow: hidden;
 }
+
+/*###########################################*/
 
 .featured_stripes {
   position: relative;
@@ -15,37 +15,46 @@
   height: 1200px; /*1200px*/
 }
 
-.featured_text {
+/*###########################################*/
+
+.imgsText_container {
   position: relative;
   font-family: 'Righteous', cursive;
   height: 100%;
   margin: 0 auto;
 }
 
-.featured_hr_wrapper {
+.imgsText_hrockets_wrapper {
   width: 100%;
   padding-top: 70px;
 }
-.featured_hr {
-  width: 50%;
+.imgsText_hrockets {
+  width: 52%;
   margin: 0 auto;
   text-align: center;
-  font-size: 5vw;
+  font-size: 4.5vw;
+  font-style: italic;
+  border-radius: 10px;
   color: white;
   background: black;
 }
-
-/* put this div at bottom of featured_text */
-.featured_players {
-  width: 100%;
-  height: 60vh;
-  text-align: center;
-  bottom: 0;
-  position: absolute;
+@media (max-width: 499px) {
+  .imgsText_hrockets {
+    font-size: 4.5vh;
+  }
 }
-.featured_players img {
+
+/* put div at bottom of imgsText_container */
+.imgsText_players {
+  width: 100%;
+  height: 65%;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+}
+.imgsText_players img {
   height: 100%;
 }
 .harden {
-  padding-right: 8%;
+  margin-right: 8%;
 }

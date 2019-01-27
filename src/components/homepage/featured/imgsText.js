@@ -6,9 +6,9 @@ import Animate from "react-move/Animate";
 import HardenFeatured from "../../../assets/otherImages/harden_featured.png";
 import PaulFeatured from "../../../assets/otherImages/paul_featured.png";
 
-const text = () => {
+const imgsText = () => {
 
-  let animateHR = (
+  let animateHRockets = (
     <Animate
       show={true}
       start={{
@@ -23,9 +23,9 @@ const text = () => {
     >
       {({opacity, rotate}) => {
         return (
-          <div className="featured_hr_wrapper">
+          <div className="imgsText_hrockets_wrapper">
             <div 
-              className="featured_hr"
+              className="imgsText_hrockets"
               style={{
                 opacity,
                 transform: `rotateY(${rotate}deg)`  //360 spin effect
@@ -52,12 +52,7 @@ const text = () => {
     >
       {({opacity}) => {
         return (
-          <div 
-            className="featured_players"
-            style={{
-              opacity
-            }}
-          >
+          <div className="imgsText_players" style={{opacity}}>
             <img src={HardenFeatured} alt="harden" className="harden" />
             <img src={PaulFeatured} alt="paul" />
           </div>
@@ -67,11 +62,11 @@ const text = () => {
   )
 
   return (
-    <div className="featured_text">
-      {animateHR}
+    <div className="imgsText_container">
+      {animateHRockets}
       {animatePlayers}
     </div>
   );
 }
 
-export default text;
+export default imgsText;

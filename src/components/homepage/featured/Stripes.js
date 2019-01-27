@@ -64,8 +64,8 @@ class Stripes extends Component {
               style={{
                 background,
                 opacity,
-                transform: `rotate(${rotate}deg) translate(${left}%, ${top}%)`  //rotate first, then move
-              }}
+                transform: `rotate(${rotate}deg) translate(${left}%, ${top}%)` //rotate first, then move
+              }} 
             >
             </div>  
           );
