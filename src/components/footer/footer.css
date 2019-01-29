@@ -3,6 +3,10 @@ footer {
   font-size: 16px;
   color: #ffffff;
   padding: 30px 0px;
+
+  /*hides sidebar parts that go over footer, in conjunction with css in adminLayout*/
+  position: absolute; 
+  width: 100%;
 }
 
 .footer_wrapper {

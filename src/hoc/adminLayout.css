@@ -1,13 +1,18 @@
 .admin_container {
   margin-top: 82px;
+  min-height: 100vh;
   display: flex;
 }
 
 .admin_left {
-  min-height: 100vh;
   background: #282828;
   display: flex;
   flex-direction: column;
+  
+  /*sticky sidebar*/
+  position: fixed;
+  top: 82px;
+  height: 100%;
 }
 
 .admin_NavLink {
@@ -21,4 +26,5 @@
 
 .admin_right {
   flex-grow: 1;
+  margin-left: 106px;  /*move out of the way*/
 }
