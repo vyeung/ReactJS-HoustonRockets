@@ -10,6 +10,9 @@
 
 # production
 /build
+\.firebase
+.firebaserc
+firebase.json
 
 # misc
 .DS_Store
@@ -24,3 +27,4 @@ yarn-error.log*
 package-lock.json
 
 \currentRoster
+rocketsNotes.txt
