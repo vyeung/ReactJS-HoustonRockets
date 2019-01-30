@@ -24,7 +24,7 @@ const formField = (props) => {
           value={props.fieldData.value}
           onChange={(event) => props.changed({event, myFieldType:props.fieldType})}
         >
-          <option value="">Select One</option>
+          <option value="">{props.optionMsg ? props.optionMsg : "Select One"}</option>
           {
             props.fieldData.config.options.map((item) => (
               //key prop is required by map. value prop is what's sent to db
