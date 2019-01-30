@@ -29,26 +29,26 @@ class EditGame extends Component {
         valid: false,
         validationMsg: ""
       },
-      home: {
+      rockets: {
         htmlTag: "select",
-        value: "",
+        value: "Rockets",
         config: {
-          name: "select_home_team",
+          name: "rockets",
           type: "select",
-          options: []
+          options: [{key:"Rockets", value:"Rockets"}]
         },
         validation: {
           required: true 
         },
-        valid: false,
+        valid: true,
         validationMsg: ""
       },
-      homeScore: {
+      rocketsScore: {
         htmlTag: "input",
         value: "",
         config: {
-          name: "homeScore_input",
-          placeholder: "Number..."
+          name: "rocketsScore_input",
+          placeholder: "Score..."
         },
         validation: {
           required: true,
@@ -57,11 +57,28 @@ class EditGame extends Component {
         valid: false,
         validationMsg: ""
       },
-      away: {
+      homeOrAway: {
         htmlTag: "select",
         value: "",
         config: {
-          name: "select_away_team",
+          name: "homeOrAway_input",
+          type: "select",
+          options: [
+            {key:"vs", value:"vs (home game)"}, 
+            {key:"@", value:"@ (away game)"}
+          ]
+        },
+        validation: {
+          required: true,
+        },
+        valid: false,
+        validationMsg: ""
+      },
+      opponent: {
+        htmlTag: "select",
+        value: "",
+        config: {
+          name: "select_opponent",
           type: "select",
           options: []
         },
@@ -71,12 +88,12 @@ class EditGame extends Component {
         valid: false,
         validationMsg: ""
       },
-      awayScore: {
+      opponentScore: {
         htmlTag: "input",
         value: "",
         config: {
-          name: "awayScore_input",
-          placeholder: "Number..."
+          name: "opponentScore_input",
+          placeholder: "Score..."
         },
         validation: {
           required: true,
@@ -118,7 +135,6 @@ class EditGame extends Component {
     firebaseDB.ref(`games/${gameId}`).once("value")
       .then((snapshot) => {
         const game = snapshot.val();
-        //console.log(game);
         this.fillFieldsWithGameInfo(game, gameId);
       })
   }
@@ -131,6 +147,9 @@ class EditGame extends Component {
 
         //push objects with key, value pairs
         for(var i=0; i<teams.length; i++) {
+          if(teams[i].shortName === "Rockets")
+            continue;
+
           formattedTeams.push({
             key: teams[i].shortName,
             value: teams[i].shortName
@@ -143,8 +162,7 @@ class EditGame extends Component {
         })
 
         const updateTeamSelects = {...this.state.editGameForm};
-        updateTeamSelects.home.config.options = formattedTeams;
-        updateTeamSelects.away.config.options = formattedTeams;
+        updateTeamSelects.opponent.config.options = formattedTeams;
 
         this.setState({editGameForm: updateTeamSelects});
       })
@@ -153,12 +171,30 @@ class EditGame extends Component {
   fillFieldsWithGameInfo = (game, gameId) => {
     const updatedForm = {...this.state.editGameForm};
 
-    for(var key in updatedForm) {
-      //when the game field is also in our form
-      if(updatedForm[key] && game[key]) {
-        updatedForm[key].value = game[key];
-        updatedForm[key].valid = true;
-      }
+    updatedForm.date.value = game.date;
+    updatedForm.date.valid = true;
+    updatedForm.result.value = game.result;
+    updatedForm.result.valid = true;
+
+    if(game.home === "Rockets") {
+      updatedForm.rocketsScore.value = game.homeScore;
+      updatedForm.rocketsScore.valid = true;
+      updatedForm.homeOrAway.value = "vs";
+      updatedForm.homeOrAway.valid = true;
+      updatedForm.opponent.value = game.away;
+      updatedForm.opponent.valid = true;
+      updatedForm.opponentScore.value = game.awayScore;
+      updatedForm.opponentScore.valid = true;
+    }
+    else {
+      updatedForm.rocketsScore.value = game.awayScore;
+      updatedForm.rocketsScore.valid = true;
+      updatedForm.homeOrAway.value = "@";
+      updatedForm.homeOrAway.valid = true;
+      updatedForm.opponent.value = game.home;
+      updatedForm.opponent.valid = true;
+      updatedForm.opponentScore.value = game.homeScore;
+      updatedForm.opponentScore.valid = true;
     }
 
     this.setState({
@@ -170,16 +206,31 @@ class EditGame extends Component {
   submitFormHandler = (event) => {
     event.preventDefault();
     
-    let dataToSubmit = {
-      away: this.state.editGameForm.away.value,
-      awayScore: this.state.editGameForm.awayScore.value,
-      awayThmb: this.state.editGameForm.away.value.toLowerCase(),
-      date: this.state.editGameForm.date.value,
-      home: this.state.editGameForm.home.value,
-      homeScore: this.state.editGameForm.homeScore.value,
-      homeThmb: this.state.editGameForm.home.value.toLowerCase(),
-      result: this.state.editGameForm.result.value
-    };
+    let dataToSubmit;
+    if(this.state.editGameForm.homeOrAway.value === "vs") {
+      dataToSubmit = {
+        away: this.state.editGameForm.opponent.value,
+        awayScore: this.state.editGameForm.opponentScore.value,
+        awayThmb: this.state.editGameForm.opponent.value.toLowerCase(),
+        date: this.state.editGameForm.date.value,
+        home: this.state.editGameForm.rockets.value,
+        homeScore: this.state.editGameForm.rocketsScore.value,
+        homeThmb: this.state.editGameForm.rockets.value.toLowerCase(),
+        result: this.state.editGameForm.result.value
+      };
+    }
+    else if(this.state.editGameForm.homeOrAway.value === "@") {
+      dataToSubmit = {
+        away: this.state.editGameForm.rockets.value,
+        awayScore: this.state.editGameForm.rocketsScore.value,
+        awayThmb: this.state.editGameForm.rockets.value.toLowerCase(),
+        date: this.state.editGameForm.date.value,
+        home: this.state.editGameForm.opponent.value,
+        homeScore: this.state.editGameForm.opponentScore.value,
+        homeThmb: this.state.editGameForm.opponent.value.toLowerCase(),
+        result: this.state.editGameForm.result.value
+      };
+    }
     let overallFormIsValid = true;
 
     //check if any field is submitted with errors
@@ -197,7 +248,7 @@ class EditGame extends Component {
           setTimeout(() => {
             this.setState({formSubmitMsg: ""});
             this.props.history.push("/admin_games");
-          }, 2000);
+          }, 1000);
         })
     }
     else {
@@ -237,7 +288,7 @@ class EditGame extends Component {
 
 
   render() {
-    // console.log(this.state.editGameForm);
+    console.log(this.state.editGameForm);
     return (
       <AdminLayout>
         <div className="addEditGame_wrapper">
@@ -253,35 +304,47 @@ class EditGame extends Component {
               />
             </div>
             
+            <div className="addEditGame_label">Matchup</div>
             <div className="addEditGame_grouping">
-              <div className="addEditGame_label">Home Team</div>
-              <FormField
-                fieldType="home"
-                fieldData={this.state.editGameForm.home}
-                changed={this.updateFormHandler}
-              />
-              <div className="addEditGame_label">Home Score</div>
-              <div className="addEditGame_score">
+              <div className="addEditGame_grouping4">
+                <div className="grouping4_rockets">
+                  <FormField
+                    fieldType="rockets"
+                    fieldData={this.state.editGameForm.rockets}
+                    changed={this.updateFormHandler}
+                  />
+                </div>
+                <div className="grouping4_rocketsScore">
+                  <FormField
+                    fieldType="rocketsScore"
+                    fieldData={this.state.editGameForm.rocketsScore}
+                    changed={this.updateFormHandler}
+                  />
+                </div>
+              </div>
+              <div className="homeOrAway">
                 <FormField
-                  fieldType="homeScore"
-                  fieldData={this.state.editGameForm.homeScore}
+                  fieldType="homeOrAway"
+                  fieldData={this.state.editGameForm.homeOrAway}
                   changed={this.updateFormHandler}
                 />
               </div>
-
-              <div className="addEditGame_label">Away Team</div>
-              <FormField
-                fieldType="away"
-                fieldData={this.state.editGameForm.away}
-                changed={this.updateFormHandler}
-              />
-              <div className="addEditGame_label">Away Score</div>
-              <div className="addEditGame_score">
-                <FormField
-                  fieldType="awayScore"
-                  fieldData={this.state.editGameForm.awayScore}
-                  changed={this.updateFormHandler}
-                />
+              <div className="addEditGame_grouping4">
+                <div className="grouping4_opponent">
+                  <FormField
+                    fieldType="opponent"
+                    fieldData={this.state.editGameForm.opponent}
+                    changed={this.updateFormHandler}
+                    optionMsg="Select Opponent"
+                  />
+                </div>
+                <div className="grouping4_opponentScore">
+                  <FormField
+                    fieldType="opponentScore"
+                    fieldData={this.state.editGameForm.opponentScore}
+                    changed={this.updateFormHandler}
+                  />
+                </div>
               </div>
             </div>
 

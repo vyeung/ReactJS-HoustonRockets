@@ -28,26 +28,26 @@ class AddGame extends Component {
         valid: false,
         validationMsg: ""
       },
-      home: {
+      rockets: {
         htmlTag: "select",
-        value: "",
+        value: "Rockets",
         config: {
-          name: "select_home_team",
+          name: "rockets",
           type: "select",
-          options: []
+          options: [{key:"Rockets", value:"Rockets"}]
         },
         validation: {
           required: true 
         },
-        valid: false,
+        valid: true,
         validationMsg: ""
       },
-      homeScore: {
+      rocketsScore: {
         htmlTag: "input",
         value: "",
         config: {
-          name: "homeScore_input",
-          placeholder: "Number..."
+          name: "rocketsScore_input",
+          placeholder: "Score..."
         },
         validation: {
           required: true,
@@ -56,11 +56,28 @@ class AddGame extends Component {
         valid: false,
         validationMsg: ""
       },
-      away: {
+      homeOrAway: {
         htmlTag: "select",
         value: "",
         config: {
-          name: "select_away_team",
+          name: "homeOrAway_input",
+          type: "select",
+          options: [
+            {key:"vs", value:"vs (home game)"}, 
+            {key:"@", value:"@ (away game)"}
+          ]
+        },
+        validation: {
+          required: true 
+        },
+        valid: false,
+        validationMsg: ""
+      },
+      opponent: {
+        htmlTag: "select",
+        value: "",
+        config: {
+          name: "select_opponent",
           type: "select",
           options: []
         },
@@ -70,12 +87,12 @@ class AddGame extends Component {
         valid: false,
         validationMsg: ""
       },
-      awayScore: {
+      opponentScore: {
         htmlTag: "input",
         value: "",
         config: {
-          name: "awayScore_input",
-          placeholder: "Number..."
+          name: "opponentScore_input",
+          placeholder: "Score..."
         },
         validation: {
           required: true,
@@ -120,6 +137,9 @@ class AddGame extends Component {
 
         //push objects with key, value pairs
         for(var i=0; i<teams.length; i++) {
+          if(teams[i].shortName === "Rockets") 
+            continue;  //don't add Rockets as an opponent
+
           formattedTeams.push({
             key: teams[i].shortName,
             value: teams[i].shortName
@@ -132,8 +152,7 @@ class AddGame extends Component {
         })
 
         const updateTeamSelects = {...this.state.addGameForm};
-        updateTeamSelects.home.config.options = formattedTeams;
-        updateTeamSelects.away.config.options = formattedTeams;
+        updateTeamSelects.opponent.config.options = formattedTeams;
 
         this.setState({addGameForm: updateTeamSelects});
       })
@@ -142,10 +161,6 @@ class AddGame extends Component {
   fillDefaultFields = () => {
     const updatedForm = {...this.state.addGameForm};
 
-    updatedForm.awayScore.value = "-";
-    updatedForm.awayScore.valid = true;
-    updatedForm.homeScore.value = "-";
-    updatedForm.homeScore.valid = true;
     updatedForm.result.value = "n/a";
     updatedForm.result.valid = true;
 
@@ -155,16 +170,31 @@ class AddGame extends Component {
   submitFormHandler = (event) => {
     event.preventDefault();
     
-    let dataToSubmit = {
-      away: this.state.addGameForm.away.value,
-      awayScore: this.state.addGameForm.awayScore.value,
-      awayThmb: this.state.addGameForm.away.value.toLowerCase(),
-      date: this.state.addGameForm.date.value,
-      home: this.state.addGameForm.home.value,
-      homeScore: this.state.addGameForm.homeScore.value,
-      homeThmb: this.state.addGameForm.home.value.toLowerCase(),
-      result: this.state.addGameForm.result.value
-    };
+    let dataToSubmit;
+    if(this.state.addGameForm.homeOrAway.value === "vs") {
+      dataToSubmit = {
+        away: this.state.addGameForm.opponent.value,
+        awayScore: this.state.addGameForm.opponentScore.value,
+        awayThmb: this.state.addGameForm.opponent.value.toLowerCase(),
+        date: this.state.addGameForm.date.value,
+        home: this.state.addGameForm.rockets.value,
+        homeScore: this.state.addGameForm.rocketsScore.value,
+        homeThmb: this.state.addGameForm.rockets.value.toLowerCase(),
+        result: this.state.addGameForm.result.value
+      };
+    }
+    else if(this.state.addGameForm.homeOrAway.value === "@") {
+      dataToSubmit = {
+        away: this.state.addGameForm.rockets.value,
+        awayScore: this.state.addGameForm.rocketsScore.value,
+        awayThmb: this.state.addGameForm.rockets.value.toLowerCase(),
+        date: this.state.addGameForm.date.value,
+        home: this.state.addGameForm.opponent.value,
+        homeScore: this.state.addGameForm.opponentScore.value,
+        homeThmb: this.state.addGameForm.opponent.value.toLowerCase(),
+        result: this.state.addGameForm.result.value
+      };
+    }
     let overallFormIsValid = true;
 
     //check if any field is submitted with errors
@@ -183,7 +213,7 @@ class AddGame extends Component {
           setTimeout(() => {
             this.setState({formSubmitMsg: ""});
             this.props.history.push("/admin_games");
-          }, 2000);
+          }, 1000);
         })
     }
     else {
@@ -222,38 +252,50 @@ class AddGame extends Component {
               />
             </div>
             
+            <div className="addEditGame_label">Matchup</div>
             <div className="addEditGame_grouping">
-              <div className="addEditGame_label">Home Team</div>
-              <FormField
-                fieldType="home"
-                fieldData={this.state.addGameForm.home}
-                changed={this.updateFormHandler}
-              />
-              <div className="addEditGame_label">Home Score</div>
-              <div className="addEditGame_score">
+              <div className="addEditGame_grouping4">
+                <div className="grouping4_rockets">
+                  <FormField
+                    fieldType="rockets"
+                    fieldData={this.state.addGameForm.rockets}
+                    changed={this.updateFormHandler}
+                  />
+                </div>
+                <div className="grouping4_rocketsScore">
+                  <FormField
+                    fieldType="rocketsScore"
+                    fieldData={this.state.addGameForm.rocketsScore}
+                    changed={this.updateFormHandler}
+                  />
+                </div>
+              </div>
+              <div className="homeOrAway">
                 <FormField
-                  fieldType="homeScore"
-                  fieldData={this.state.addGameForm.homeScore}
+                  fieldType="homeOrAway"
+                  fieldData={this.state.addGameForm.homeOrAway}
                   changed={this.updateFormHandler}
                 />
               </div>
-
-              <div className="addEditGame_label">Away Team</div>
-              <FormField
-                fieldType="away"
-                fieldData={this.state.addGameForm.away}
-                changed={this.updateFormHandler}
-              />
-              <div className="addEditGame_label">Away Score</div>
-              <div className="addEditGame_score">
-                <FormField
-                  fieldType="awayScore"
-                  fieldData={this.state.addGameForm.awayScore}
-                  changed={this.updateFormHandler}
-                />
+              <div className="addEditGame_grouping4">
+                <div className="grouping4_opponent">
+                  <FormField
+                    fieldType="opponent"
+                    fieldData={this.state.addGameForm.opponent}
+                    changed={this.updateFormHandler}
+                    optionMsg="Select Opponent"
+                  />
+                </div>
+                <div className="grouping4_opponentScore">
+                  <FormField
+                    fieldType="opponentScore"
+                    fieldData={this.state.addGameForm.opponentScore}
+                    changed={this.updateFormHandler}
+                  />
+                </div>
               </div>
             </div>
-
+            
             <div className="addEditGame_grouping">
               <div className="addEditGame_label">Game Result</div>
               <FormField
