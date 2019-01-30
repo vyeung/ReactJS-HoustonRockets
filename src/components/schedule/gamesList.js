@@ -21,6 +21,17 @@ const gamesList = (props) => {
 
     return result;
   }
+
+  const gameScoreHandler = (game) => {
+    let gameScore;
+    //have the Rockets score always be on the left
+    if(game.home === "Rockets")
+      gameScore = game.homeScore + " - " + game.awayScore;
+    else
+      gameScore = game.awayScore + " - " + game.homeScore;
+    
+    return gameScore;
+  }
   
   return (
     <NodeGroup
@@ -49,15 +60,15 @@ const gamesList = (props) => {
               
               <div className="gameList_opponent">
                 <div className="atVersus">
-                  {data.away==="Rockets" ? "@  " : "vs"}
+                  {data.home==="Rockets" ? "vs" : "@"}
                 </div>
                 <div className="teamIcon">
-                  {data.away==="Rockets" ? 
-                    <img src={require(`../../assets/nba_team_logos/${data.homeThmb}.png`)} alt="icon"/>
-                    :
-                    <img src={require(`../../assets/nba_team_logos/${data.awayThmb}.png`)} alt="icon"/>}
+                  {data.home==="Rockets" ?
+                    <img src={require(`../../assets/nba_team_logos/${data.awayThmb}.png`)} alt="icon"/>
+                    : 
+                    <img src={require(`../../assets/nba_team_logos/${data.homeThmb}.png`)} alt="icon"/>}
                 </div>
-                {data.away==="Rockets" ? data.home : data.away}
+                {data.home==="Rockets" ? data.away : data.home}
               </div>
 
               <div className="gameList_result">
@@ -67,7 +78,7 @@ const gamesList = (props) => {
                 {(data.result==="n/a" || data.result==="C") ? 
                   null
                   :
-                  `${data.awayScore} - ${data.homeScore}`}
+                  gameScoreHandler(data)}
               </div>
             </div>
           ))}
