@@ -86,11 +86,18 @@ class AdminGames extends Component {
                     </TableCell>
                     <TableCell style={bodySize}>
                       <Link to={`/admin_games/edit_game/${game.id}`}>
-                        {game.away} @ {game.home}
+                        {game.home === "Rockets" ? 
+                          `vs ${game.away}` 
+                          : 
+                          `@ ${game.home}`}
                       </Link>
                     </TableCell>
                     <TableCell style={bodySize}>
-                      {game.awayScore} - {game.homeScore}
+                      {/*have the Rockets score always be on the left*/}
+                      {game.home === "Rockets" ? 
+                        `${game.homeScore} - ${game.awayScore}`
+                        :
+                        `${game.awayScore} - ${game.homeScore}`}
                     </TableCell>
                     <TableCell style={bodySize}>
                       {this.gameResultHandler(game)}
