@@ -24,11 +24,11 @@ const gamesList = (props) => {
 
   const gameScoreHandler = (game) => {
     let gameScore;
-    //have the Rockets score always be on the left
-    if(game.home === "Rockets")
-      gameScore = game.homeScore + " - " + game.awayScore;
+    // have the Rockets score always be on the left
+    if(game.hTeam.teamName === "Rockets")
+      gameScore = game.hTeam.score + " - " + game.vTeam.score;
     else
-      gameScore = game.awayScore + " - " + game.homeScore;
+      gameScore = game.vTeam.score + " - " + game.hTeam.score;
     
     return gameScore;
   }
@@ -36,7 +36,7 @@ const gamesList = (props) => {
   return (
     <NodeGroup
       data={props.whichGames}
-      keyAccessor={data => data.id}
+      keyAccessor={data => data.gameId}
       start={() => (
         {opacity:0, x:-200}
       )}
@@ -55,20 +55,20 @@ const gamesList = (props) => {
           {nodes.map(({key, data, state:{x,opacity}}) => (
             <div className="gameList_block" style={{opacity, transform:`translate(${x}px)`}} key={key}>
               <div className="gameList_date">
-                {data.date}
+                {data.startDateEastern}
               </div>
               
               <div className="gameList_opponent">
                 <div className="atVersus">
-                  {data.home==="Rockets" ? "vs" : "@"}
+                  {data.hTeam.teamName==="Rockets" ? "vs" : "@"}
                 </div>
                 <div className="teamIcon">
-                  {data.home==="Rockets" ?
-                    <img src={require(`../../assets/nba_team_logos/${data.awayThmb}.png`)} alt="icon"/>
+                  {data.hTeam.teamName==="Rockets" ?
+                    <img src={require(`../../assets/nba_team_logos/${data.vTeam.teamName.toLowerCase()}.png`)} alt="icon"/>
                     : 
-                    <img src={require(`../../assets/nba_team_logos/${data.homeThmb}.png`)} alt="icon"/>}
+                    <img src={require(`../../assets/nba_team_logos/${data.hTeam.teamName.toLowerCase()}.png`)} alt="icon"/>}
                 </div>
-                {data.home==="Rockets" ? data.away : data.home}
+                {data.hTeam.teamName==="Rockets" ? data.vTeam.teamName : data.hTeam.teamName}
               </div>
 
               <div className="gameList_result">
