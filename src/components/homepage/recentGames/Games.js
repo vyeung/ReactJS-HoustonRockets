@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import "./recentGames.css";
 
-import { firebaseGames } from "../../../firebase";
-import firebaseLooper from "../../utils/firebaseLooper";
 import convertDate from "../../utils/convertDate";
+import getTeamName from "../../utils/getTeamName";
 
 import GameBlock from "../../utils/gameBlock";
 import Slide from "react-reveal/Slide";
@@ -15,140 +14,52 @@ class Games extends Component {
   }
 
   componentDidMount() {
-    //firebase get request
-    firebaseGames.once("value")
-      .then((snapshot) => {
-        const formattedGames = firebaseLooper(snapshot);
-        
-        //sort by date
-        formattedGames.sort((a, b) => {
-          return a.date.localeCompare(b.date);
-        })
+    const year = new Date().getFullYear()-1;
+    const nbaSchedule = `http://data.nba.net/data/prod/v1/${year}/teams/rockets/schedule.json`;
 
-        //now convert the date
-        for(let key in formattedGames) {
-          formattedGames[key].date = convertDate(formattedGames[key].date);
-        }
+    fetch("https://cors-anywhere.herokuapp.com/" + nbaSchedule)
+      .then(res => res.json())
+      .catch(error => console.log(error))
+        .then(data => {
+          // easier to reverse schedule and then look for played games
+          let teamData = data.league.standard.reverse();
 
-        let displayedGames = [];
-        let naPosition = 0;
-        
-        //want to show a max of 6 recent games
-        for(var i=0; i<formattedGames.length; i++) {
-          
-          //2 major code blocks are when formattedGames.length is <= or > 6
-          if(formattedGames.length <= 6) {
-            if(formattedGames[i].result === "n/a") {
-              if(naPosition === 0) {
-                break;
-              }
-              else if(naPosition === 1) {
-                displayedGames[0] = formattedGames[i-1];
-                break;
-              }
-              else if(naPosition === 2) {
-                displayedGames[0] = formattedGames[i-1];
-                displayedGames[1] = formattedGames[i-2];
-                break;
-              }
-              else if(naPosition === 3) {
-                displayedGames[0] = formattedGames[i-1];
-                displayedGames[1] = formattedGames[i-2];
-                displayedGames[2] = formattedGames[i-3];
-                break;
-              }
-              else if(naPosition === 4) {
-                displayedGames[0] = formattedGames[i-1];
-                displayedGames[1] = formattedGames[i-2];
-                displayedGames[2] = formattedGames[i-3];
-                displayedGames[3] = formattedGames[i-4];
-                break;
-              }
-              else if(naPosition === 5) {
-                displayedGames[0] = formattedGames[i-1];
-                displayedGames[1] = formattedGames[i-2];
-                displayedGames[2] = formattedGames[i-3];
-                displayedGames[3] = formattedGames[i-4];
-                displayedGames[4] = formattedGames[i-5];
-                break;
-              }
+          let displayedGames = [];
+          let counter = 0;
+
+          for (let i=0; i<teamData.length; i++) {
+            // skipping preseason games
+            if (teamData[i].seasonStageId === 1) {
+              continue;
             }
-            else if(i===formattedGames.length-1 && displayedGames.length===0) {
-              displayedGames[0] = formattedGames[i];
-              displayedGames[1] = formattedGames[i-1];
-              displayedGames[2] = formattedGames[i-2];
-              displayedGames[3] = formattedGames[i-3];
-              displayedGames[4] = formattedGames[i-4];
-              displayedGames[5] = formattedGames[i-5];
+
+            // statusNum=1 means game not played. statusNum=3 means game played
+            if (teamData[i].statusNum === 3) {
+              let transformed = {
+                id: teamData[i].gameId,
+                away: getTeamName(teamData[i].vTeam.teamId),
+                awayScore: teamData[i].vTeam.score,
+                awayThmb: getTeamName(teamData[i].vTeam.teamId).toLowerCase(),
+                date: convertDate(teamData[i].startDateEastern),
+                home: getTeamName(teamData[i].hTeam.teamId),
+                homeScore: teamData[i].hTeam.score,
+                homeThmb: getTeamName(teamData[i].hTeam.teamId).toLowerCase()
+              };
+              displayedGames.push(transformed);
+              counter++;
             }
-          }
-          else if(formattedGames.length > 6) {
-            //cases where season just started but user added many games ahead
-            if(formattedGames[i].result==="n/a" && naPosition<=6) {
-              if(naPosition === 0) {
-                break;
-              }
-              else if(naPosition === 1) {
-                displayedGames[0] = formattedGames[i-1];
-                break;
-              }
-              else if(naPosition === 2) {
-                displayedGames[0] = formattedGames[i-1];
-                displayedGames[1] = formattedGames[i-2];
-                break;
-              }
-              else if(naPosition === 3) {
-                displayedGames[0] = formattedGames[i-1];
-                displayedGames[1] = formattedGames[i-2];
-                displayedGames[2] = formattedGames[i-3];
-                break;
-              }
-              else if(naPosition === 4) {
-                displayedGames[0] = formattedGames[i-1];
-                displayedGames[1] = formattedGames[i-2];
-                displayedGames[2] = formattedGames[i-3];
-                displayedGames[3] = formattedGames[i-4];
-                break;
-              }
-              else if(naPosition === 5) {
-                displayedGames[0] = formattedGames[i-1];
-                displayedGames[1] = formattedGames[i-2];
-                displayedGames[2] = formattedGames[i-3];
-                displayedGames[3] = formattedGames[i-4];
-                displayedGames[4] = formattedGames[i-5];
-                break;
-              }
-            }
-            //most regular case
-            else if(formattedGames[i].result==="n/a" && naPosition>6) {
-              displayedGames[0] = formattedGames[i-1];
-              displayedGames[1] = formattedGames[i-2];
-              displayedGames[2] = formattedGames[i-3];
-              displayedGames[3] = formattedGames[i-4];
-              displayedGames[4] = formattedGames[i-5];
-              displayedGames[5] = formattedGames[i-6];
+
+            // showing a max of 6 recent games
+            if (counter === 6) {
               break;
             }
-            //case where all games in season have been played so no "n/a" left.
-            //we're at end of formattedGames and displayedGames length still = 0
-            else if(i===formattedGames.length-1 && displayedGames.length===0) {
-              displayedGames[0] = formattedGames[i];
-              displayedGames[1] = formattedGames[i-1];
-              displayedGames[2] = formattedGames[i-2];
-              displayedGames[3] = formattedGames[i-3];
-              displayedGames[4] = formattedGames[i-4];
-              displayedGames[5] = formattedGames[i-5];
-            }
           }
 
-          naPosition++;         
-        }
-
-        this.setState({
-          //reverse array so games are in ascending order again
-          games: displayedGames.reverse()
+          this.setState({
+            // reverse array so games are in ascending order again
+            games: displayedGames.reverse()
+          });
         });
-      });
   }
 
   render() {

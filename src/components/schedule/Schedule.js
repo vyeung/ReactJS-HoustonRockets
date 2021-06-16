@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import "./Schedule.css";
 
-import { firebaseGames } from "../../firebase";
-import firebaseLooper from "../utils/firebaseLooper";
 import convertDate from "../utils/convertDate";
+import getTeamName from "../utils/getTeamName";
 
 import ConfStandings from "./ConfStandings";
 import GamesList from "./gamesList";
@@ -24,26 +23,55 @@ class Schedule extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
 
-    firebaseGames.once("value")
-      .then(snapshot => {
-        const formattedGames = firebaseLooper(snapshot);
+    const year = new Date().getFullYear()-1;
+    const nbaSchedule = `http://data.nba.net/data/prod/v1/${year}/teams/rockets/schedule.json`;
 
-        //sort by date
-        formattedGames.sort((a, b) => {
-          return a.date.localeCompare(b.date);
-        })
+    fetch("https://cors-anywhere.herokuapp.com/" + nbaSchedule)
+      .then(res => res.json())
+      .catch(error => console.log(error))
+        .then(data => {
+          const teamData = data.league.standard;
+          const seasonGames = [];
 
-        //now convert the date
-        for(let key in formattedGames) {
-          formattedGames[key].date = convertDate(formattedGames[key].date);
-        }
+          for (let obj in teamData) {
+            // skipping preason games, which are seasonStageId=1
+            if (teamData[obj].seasonStageId === 1) {
+              continue;
+            }
 
-        this.setState({
-          isLoading: false,
-          games: formattedGames,
-          filteredGames: formattedGames //default is to show all games on page load
+            // seasonStageId=2 is regular season, seasonStageId=4 is playoffs
+            if (teamData[obj].seasonStageId === 2 || teamData[obj].seasonStageId === 4) {
+              // determine if game was n/a, W, or L
+              if (teamData[obj].hTeam.score === "" || teamData[obj].vTeam.score === "") {
+                teamData[obj].result = "n/a";  //add a new result field to each game
+              }
+              else if (teamData[obj].isHomeTeam === true) {
+                if (teamData[obj].hTeam.score > teamData[obj].vTeam.score)
+                  teamData[obj].result = "W";
+                else
+                  teamData[obj].result = "L";
+              }
+              else if (teamData[obj].isHomeTeam === false) {
+                if (teamData[obj].vTeam.score > teamData[obj].hTeam.score)
+                  teamData[obj].result = "W";
+                else
+                  teamData[obj].result = "L";
+              }
+
+              teamData[obj].startDateEastern = convertDate(teamData[obj].startDateEastern);
+              teamData[obj].hTeam.teamName = getTeamName(teamData[obj].hTeam.teamId);
+              teamData[obj].vTeam.teamName = getTeamName(teamData[obj].vTeam.teamId);
+
+              seasonGames.push(teamData[obj]);
+            }
+          }
+
+          this.setState({
+            isLoading: false,
+            games: seasonGames,
+            filteredGames: seasonGames // default is to show all games on page load
+          });
         });
-      })
   }
 
   showPlayedHandler = (selection) => {
@@ -67,13 +95,13 @@ class Schedule extends Component {
     else if(selection === "Home") {
       list = this.state.games.filter((game) => {
         //don't include TBD or Cancelled games
-        return (game.home==="Rockets") && !(game.result==="n/a" || game.result==="C");
+        return (game.hTeam.teamName==="Rockets") && !(game.result==="n/a" || game.result==="C");
       });
     }
     else if(selection === "Away") {
       list = this.state.games.filter((game) => {
         //don't include TBD or Cancelled games
-        return (game.home!=="Rockets") && !(game.result==="n/a" || game.result==="C");
+        return (game.hTeam.teamName!=="Rockets") && !(game.result==="n/a" || game.result==="C");
       });
     }
 
