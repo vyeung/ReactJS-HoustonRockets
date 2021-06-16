@@ -1,21 +1,16 @@
-/*this function takes the ISO input date format YYYY-MM-DD and 
+/*this function takes in the date format YYYYMMDD and 
 converts it to Month Day, Year
 Ex: Nov 14, 2018
 */
+const convertDate = (date) => {
 
-const convertDate = (ISOdate) => {
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", 
-                  "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+  const year  = date.substring(0, 4);
+  const month = date.substring(4, 6);
+  const day   = date.substring(6, 8);
 
-  //replacing with "/" fixes problem of day being off by 1
-  const versionWithSlashes = new Date(ISOdate.replace(/-/g, "/"));
-
-  const myDate = months[versionWithSlashes.getMonth()] + " " + 
-                 versionWithSlashes.getDate() + ", " + 
-                 versionWithSlashes.getFullYear();
-  
-  return myDate;
+  return months[month-1] + " " + day + ", " + year;
 }
 
 export default convertDate;
