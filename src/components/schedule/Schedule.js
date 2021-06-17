@@ -24,9 +24,9 @@ class Schedule extends Component {
     window.scrollTo(0, 0);
 
     const year = new Date().getFullYear()-1;
-    const nbaSchedule = `http://data.nba.net/data/prod/v1/${year}/teams/rockets/schedule.json`;
+    const rocketsSchedule = `https://data.nba.net/data/prod/v1/${year}/teams/rockets/schedule.json`;
 
-    fetch("https://cors-anywhere.herokuapp.com/" + nbaSchedule)
+    fetch(rocketsSchedule)
       .then(res => res.json())
       .catch(error => console.log(error))
         .then(data => {

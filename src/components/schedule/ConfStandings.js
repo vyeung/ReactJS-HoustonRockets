@@ -17,8 +17,7 @@ class ConfStandings extends Component {
   }
 
   componentDidMount() {
-    //using a CORS proxy to get around error
-    fetch("https://cors-anywhere.herokuapp.com/http://data.nba.net/prod/v1/current/standings_conference.json")
+    fetch("https://data.nba.net/prod/v1/current/standings_conference.json")
       .then(res => res.json())
       .catch(error => console.log(error))
         .then(data => {
