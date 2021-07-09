@@ -19,7 +19,8 @@
 
 \[**How to Run**\]
 1. clone/download repo.
-2. go to folder path and npm install.
-3. npm start
+2. check that u have Node v14+ installed.
+3. go to folder path and npm install.
+4. npm start
 
 * Or use deployment link: https://reactjs-houstonrockets.firebaseapp.com
