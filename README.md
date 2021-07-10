@@ -5,7 +5,7 @@
 ***
 
 \[**Description**\]
-* This is a fan website that follows the Houston Rockets' players and schedule. Regular users can view the team roster, use filters to see the team schedule, or enter a raffle to win a free jersey. Authenticated users are given access to an admin dashboard where they can add or edit games/players. The app is connected to a Firebase DB and also features eye-catching animations.
+* This is a fan website that follows the Houston Rockets' players and schedule. Regular users can view the team roster, use filters to see the team schedule, or enter a raffle to win a free jersey. Authenticated users are given access to an admin dashboard where they can add or edit the players. The app is connected to a Firebase DB and also features eye-catching animations.
 
 ***
 
