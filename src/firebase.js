@@ -16,7 +16,6 @@ var config = {
 firebase.initializeApp(config);
 
 const firebaseDB = firebase.database();
-const firebaseGames = firebaseDB.ref("games");
 const firebasePromotion = firebaseDB.ref("promotion");
 const firebaseTeams = firebaseDB.ref("teams");
 const firebasePlayers = firebaseDB.ref("players");
@@ -30,7 +29,6 @@ const firebasePlayers = firebaseDB.ref("players");
 export {
   firebase,
   firebaseDB,
-  firebaseGames,
   firebasePromotion,
   firebaseTeams,
   firebasePlayers

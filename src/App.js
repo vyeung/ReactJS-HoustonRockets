@@ -10,9 +10,6 @@ import Schedule from "./components/schedule/Schedule";
 import NotFound from "./components/notFound/notFound";
 
 import Dashboard from "./components/admin/dashboard";
-import AdminGames from "./components/admin/games/AdminGames";
-import EditGame from "./components/admin/games/EditGame";
-import AddGame from "./components/admin/games/AddGame";
 import AdminPlayers from "./components/admin/players/AdminPlayers";
 import EditPlayer from "./components/admin/players/EditPlayer";
 import AddPlayer from "./components/admin/players/AddPlayer";
@@ -27,9 +24,6 @@ const App = (props) => {
       <Switch>
         {/*...props will include the userInfo prop from index.js*/}
         <PrivateRoute {...props} exact component={Dashboard} path="/dashboard" />
-        <PrivateRoute {...props} exact component={AdminGames} path="/admin_games" />
-        <PrivateRoute {...props} exact component={EditGame} path="/admin_games/edit_game/:id" />
-        <PrivateRoute {...props} exact component={AddGame} path="/admin_games/add_game" />
         <PrivateRoute {...props} exact component={AdminPlayers} path="/admin_players" />
         <PrivateRoute {...props} exact component={EditPlayer} path="/admin_players/edit_player/:id" />
         <PrivateRoute {...props} exact component={AddPlayer} path="/admin_players/add_player" />

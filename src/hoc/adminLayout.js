@@ -19,14 +19,6 @@ const adminLayout = (props) => {
   return (
     <div className="admin_container">
       <div className="admin_left">
-        <NavLink to="/admin_games" className="admin_NavLink">
-          Games
-        </NavLink>
-
-        <NavLink to="/admin_games/add_game" className="admin_NavLink">
-          Add Game
-        </NavLink>
-
         <NavLink to="/admin_players" className="admin_NavLink">
           Players
         </NavLink>
