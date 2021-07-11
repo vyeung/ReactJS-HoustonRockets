@@ -3,12 +3,12 @@ import "./featured.css";
 
 import { easePolyOut } from "d3-ease";
 import Animate from "react-move/Animate";
-import HardenFeatured from "../../../assets/otherImages/harden_featured.png";
-import PaulFeatured from "../../../assets/otherImages/paul_featured.png";
+import FeaturedPlayer1 from "../../../assets/otherImages/featured_player_1.png";
+import FeaturedPlayer2 from "../../../assets/otherImages/featured_player_2.png";
 
 const imgsText = () => {
 
-  let animateHRockets = (
+  let animateHoustonRockets = (
     <Animate
       show={true}
       start={{
@@ -39,7 +39,7 @@ const imgsText = () => {
     </Animate>
   )
 
-  let animatePlayers = (
+  let animateFeaturedPlayers = (
     <Animate
       show={true}
       start={{
@@ -53,8 +53,8 @@ const imgsText = () => {
       {({opacity}) => {
         return (
           <div className="imgsText_players" style={{opacity}}>
-            <img src={HardenFeatured} alt="harden" className="harden" />
-            <img src={PaulFeatured} alt="paul" />
+            <img src={FeaturedPlayer1} alt="player1" className="player1" />
+            <img src={FeaturedPlayer2} alt="player2" />
           </div>
         );
       }}
@@ -63,8 +63,8 @@ const imgsText = () => {
 
   return (
     <div className="imgsText_container">
-      {animateHRockets}
-      {animatePlayers}
+      {animateHoustonRockets}
+      {animateFeaturedPlayers}
     </div>
   );
 }
