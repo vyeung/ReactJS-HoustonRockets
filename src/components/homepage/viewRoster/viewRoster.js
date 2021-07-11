@@ -3,7 +3,7 @@ import "./viewRoster.css";
 
 import { Link } from "react-router-dom";
 import PlayerCard from "../../utils/playerCard";
-import Harden from "../../../assets/otherImages/james_harden.png";
+import GenericNoPic from "../../../assets/otherImages/genericNoPic.png";
 import Fade from "react-reveal/Fade";
 
 const viewRoster = () => {
@@ -16,23 +16,23 @@ const viewRoster = () => {
             <div className="viewRoster_cardstack">
               {/*cards 1,2,3 are just dummy filler cards*/}
               <div className="card1">
-                <PlayerCard number="15" bck={Harden} />
+                <PlayerCard number="15" bck={GenericNoPic} />
               </div>
               <div className="card2">
-                <PlayerCard number="10" bck={Harden} />
+                <PlayerCard number="10" bck={GenericNoPic} />
               </div>
               <div className="card3">
-                <PlayerCard number="17" bck={Harden} />
+                <PlayerCard number="17" bck={GenericNoPic} />
               </div>
               <div className="card4">
                 <PlayerCard 
                   number="13"
-                  firstname="James"
-                  lastname="Harden"
+                  firstname="Player"
+                  lastname="Name"
                   height="6' 5"
                   weight="220"
-                  exp="9"
-                  bck={Harden} 
+                  exp="5"
+                  bck={GenericNoPic} 
                 />
               </div>
             </div>
