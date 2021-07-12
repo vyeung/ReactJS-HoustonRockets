@@ -48,7 +48,7 @@ class Stripes extends Component {
           delay: 0
         }}
         enter={{
-          background: [stripe.background],
+          background: `${stripe.background}`,
           opacity: [1],
           left: [stripe.left],
           top: [stripe.top],

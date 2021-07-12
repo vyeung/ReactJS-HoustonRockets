@@ -33,13 +33,13 @@ class ConfStandings extends Component {
     const regular = {
       color: "white",
       textAlign: "center",
-      padding: "4px 11px",
+      padding: "13px 11px",
       fontSize: "15px"
     };
     const black = {
       color: "white",
       textAlign: "center",
-      padding: "4px 11px",
+      padding: "13px 11px",
       fontSize: "15px",
       borderBottom: "1px solid black",
       borderBottomWidth: "medium"

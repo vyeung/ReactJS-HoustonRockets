@@ -32,7 +32,7 @@ const gamesList = (props) => {
     
     return gameScore;
   }
-  
+
   return (
     <NodeGroup
       data={props.whichGames}
@@ -64,9 +64,9 @@ const gamesList = (props) => {
                 </div>
                 <div className="teamIcon">
                   {data.hTeam.teamName==="Rockets" ?
-                    <img src={require(`../../assets/nba_team_logos/${data.vTeam.teamName.toLowerCase()}.png`)} alt="icon"/>
+                    <img src={require(`../../assets/nba_team_logos/${data.vTeam.teamName.toLowerCase()}.png`).default} alt="icon"/>
                     : 
-                    <img src={require(`../../assets/nba_team_logos/${data.hTeam.teamName.toLowerCase()}.png`)} alt="icon"/>}
+                    <img src={require(`../../assets/nba_team_logos/${data.hTeam.teamName.toLowerCase()}.png`).default} alt="icon"/>}
                 </div>
                 {data.hTeam.teamName==="Rockets" ? data.vTeam.teamName : data.hTeam.teamName}
               </div>
